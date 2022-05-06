@@ -1,6 +1,8 @@
 ﻿#include <iostream>
 #include <string>
+
 using namespace std;
+
 string buf;            
 int len1[10];                     
 int len2[10];                  
@@ -8,8 +10,6 @@ int countt1 = 0;
 int countt2 = 1;                          
 string s;                           
 int arr[40][40];
-
-
 
 
 void input_array(string s, int n)
@@ -27,8 +27,6 @@ void input_array(string s, int n)
             else arr[i][j] = max(arr[i - 1][j], arr[i][j + 1]);
         }
     }
-
-
 }
 
 void main() {
@@ -57,5 +55,4 @@ void main() {
     cout <<"длинна наибольшего палиндрома равна " << (arr[co - 1][0])<< " символов" << endl;
 
     system("pause");
-
 }
