@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <time.h>
 using namespace std;
 
 void main() {
@@ -7,10 +8,10 @@ void main() {
 	cout << "enter seze array=====>";
 	cin >> n;
 	int* Arr = new int[n];
+	srand(time(NULL));
 	for (int i = 0; i < n; i++) {
 
-		cout << "enter [" << i + 1 << "] element:";
-		cin >> Arr[i];
+		Arr[i] = 1 + rand() % 1000;
 
 	}
 	for (int i = 0; i < n; i++) {
