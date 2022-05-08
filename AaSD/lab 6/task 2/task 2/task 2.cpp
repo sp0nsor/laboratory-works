@@ -13,7 +13,7 @@ void main() {
 	srand(time(NULL));
 	for (int i = 0; i < n; i++) {
 
-		Arr[i] = 1 + rand() % 1000;
+		Arr[i] = 1 + rand() % 100;
 
 	}
 	for (int i = 0; i < n; i++) {

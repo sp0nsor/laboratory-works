@@ -1,79 +1,44 @@
-﻿#include <iostream>
+﻿#include <algorithm>
+#include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
-int findMax(int arr[], int n)
+// Function to sort arr[] of
+// size n using bucket sort
+void bucketSort(float arr[], int n)
 {
-	int i, max = arr[0], cnt = 0;
-	for (i = 1; i < n; i++)
-	{
-		if (arr[i] > max)
-			max = arr[i];
-	}
-	while (max > 0)
-	{
-		cnt++;
-		max = max / 10;
-	}
 
-	return cnt;
+    // 1) Create n empty buckets
+    vector<float> b[n];
+
+    // 2) Put array elements
+    // in different buckets
+    for (int i = 0; i < n; i++) {
+        int bi = n * arr[i]; // Index in bucket
+        b[bi].push_back(arr[i]);
+    }
+
+    // 3) Sort individual buckets
+    for (int i = 0; i < n; i++)
+        sort(b[i].begin(), b[i].end());
+
+    // 4) Concatenate all buckets into arr[]
+    int index = 0;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < b[i].size(); j++)
+            arr[index++] = b[i][j];
 }
 
-void bucket_sort(int arr[], int *zxc[], int n) {
+/* Driver program to test above function */
+int main()
+{
+    float arr[]
+        = { 0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    bucketSort(arr, n);
 
-	int i, int j[10], k, l, d = 1;
-	int c;
-	c = findMax(arr, n);
-
-	for (int m = 0; m < c; m++) {
-
-		for (i = 0; i < 10; i++)
-			j[i] = 0;
-		for (i = 0; i < n; i++) {
-			k = (arr[i] / d) % 10;
-			zxc[k][j[k]] = arr[i];
-			j[k]++;
-		}
-		l = 0;
-		for (i = 0; i < n; i++) {
-
-			for (k = 0; k < j[k]; k++) {
-
-				arr[l] = zxc[i][k];
-				l++;
-
-			}
-			
-		}
-		d *= 10;
-	}
-
-}
-
-int main() {
-
-	int n;
-	int* zxc[10];
-	cout << "enter size array=====>";
-	cin >> n;
-	int* Arr = new int[n+1];
-
-	for (int i = 0; i < n; i++)
-		zxc[i] = new int[n];
-
-	for (int i = 0; i < n; i++) {
-
-		cout << "enter [" << i + 1 << "] element";
-		cin >> Arr[i];
-
-	}
-	bucket_sort(Arr, zxc, n);
-	cout << "result array: ";
-	for (int i = 0; i < n; i++) {
-
-		cout << Arr[i] << " ";
-
-	}
-	return 0;
+    cout << "Sorted array is \n";
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+    return 0;
 }
