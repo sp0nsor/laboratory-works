@@ -87,23 +87,33 @@ void bucket_sort(int* arr, unsigned int size) {
 
 	unsigned int start_time = clock();// начальное время 
 
-	std::vector<int>* v = new std::vector<int>[size];
-	int i = 0;
-	int basis;
-	int concat_index = 0;
+	unsigned int i = 0;
+	long int basis;
+	long int maxz = arr[0];
+	unsigned int concat_index = 0;
+	unsigned int xchanges = 0;
 
+	for (unsigned int i = 1; i < size; ++i) {
+		if (arr[i] > maxz)
+			maxz = arr[i];
+	}
+
+	vector<int>* v = new vector<int>[size * maxz + 1];
 
 	for (; i < size; i++) {
 		basis = size * arr[i];
 		v[basis].push_back(arr[i]);
 	}
 
-	for (i = 0; i < size; i++) {
+	for (i = 0; i < size * maxz + 1; i++) {
 		std::sort(v[i].begin(), v[i].end());
 	}
 
-	for (i = 0; i < size; i++) {
+	for (i = 0; i < size * maxz + 1; i++) {
 		for (size_t j = 0; j < v[i].size(); j++) {
+			if (arr[concat_index] != v[i][j]) {
+				xchanges++;
+			}
 			arr[concat_index] = v[i][j];
 			concat_index += 1;
 		}
@@ -111,10 +121,12 @@ void bucket_sort(int* arr, unsigned int size) {
 
 	delete[] v;
 
+
 	unsigned int end_time = clock();
 	unsigned int search_time = end_time - start_time;
 
 	cout << "время выполнение сортиовки: " << search_time << endl;
+	cout << "количество обменов: " << xchanges << endl;
 }
 
 void main() {
