@@ -8,15 +8,15 @@
 #include <ctime>
 using namespace std;
 
-void selection_sort(int* arr, unsigned long int size) {
+void selection_sort(int* arr, unsigned int size) {
 	
 	long long int comparison = 0;// количество сравнений 
 	long long int exchanges = 0; // количество обменов
 	unsigned int start_time = clock();// начальное время 
 
-	for (unsigned long int i = 0; i < size - 1; i++) {
-		unsigned long int minz = i;
-		for (unsigned long int j = i + 1; j < size; j++) {
+	for (unsigned int i = 0; i < size - 1; i++) {
+		unsigned int minz = i;
+		for (unsigned int j = i + 1; j < size; j++) {
 			comparison++;
 			if (arr[j] < arr[minz]) {
 				minz = j;
@@ -35,15 +35,15 @@ void selection_sort(int* arr, unsigned long int size) {
 
 }
 
-void insert_sort(int* arr,unsigned long int size) {
+void insert_sort(int* arr,unsigned int size) {
 
 	long long int comparison = 0;// количество сравнений 
 	long long int exchanges = 0; // количество обменов
 	unsigned int start_time = clock();// начальное время 
 
-	for (unsigned long int i = 1; i < size; i++) {
+	for (unsigned int i = 1; i < size; i++) {
 		comparison++;
-		for (unsigned long int j = i; j > 0 && arr[j - 1] > arr[j]; j--) {
+		for (unsigned int j = i; j > 0 && arr[j - 1] > arr[j]; j--) {
 			exchanges += 3;
 			swap(arr[j - 1], arr[j]);
 		}
@@ -64,8 +64,8 @@ void buble_sort(int* arr, unsigned long int size) {
 	long long int exchanges = 0; // количество обменов
 	unsigned int start_time = clock();// начальное время 
 	
-	for (unsigned long int i = 0; i < size -1; i++) {
-		for (unsigned long int j = 0; j < size - 1; j++) {
+	for (unsigned int i = 0; i < size -1; i++) {
+		for (unsigned int j = 0; j < size - 1; j++) {
 			comparison++;
 			if (arr[j] > arr[j + 1]) {
 				exchanges += 3;
@@ -87,22 +87,25 @@ void bucket_sort(int* arr, unsigned int size) {
 
 	unsigned int start_time = clock();// начальное время 
 
-	vector<int>* v = new vector<int>[size];
-	unsigned int i = 0;
-	unsigned int basis;
-	unsigned int concat_index = 0;
+	std::vector<int>* v = new std::vector<int>[size];
+	int i = 0;
+	int basis;
+	int concat_index = 0;
 
-	for (i=0; i < size; ++i) {
+
+	for (; i < size; i++) {
 		basis = size * arr[i];
 		v[basis].push_back(arr[i]);
 	}
+
 	for (i = 0; i < size; i++) {
-		sort(v[i].begin(), v[i].end());
+		std::sort(v[i].begin(), v[i].end());
 	}
+
 	for (i = 0; i < size; i++) {
 		for (size_t j = 0; j < v[i].size(); j++) {
 			arr[concat_index] = v[i][j];
-			concat_index++;
+			concat_index += 1;
 		}
 	}
 
@@ -237,7 +240,6 @@ void main() {
 		cout << "Сортировка вставками:" << endl;
 		insert_sort(array, size);
 		cout << "Результат выведен в файл > " << "out.txt" << endl;
-
 
 		ofstream out("out.txt");
 		for (unsigned i = 0; i < size; i++) {
