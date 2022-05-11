@@ -83,26 +83,30 @@ void buble_sort(int* arr, unsigned long int size) {
 
 }
 
-void bucket_sort(int* arr, const unsigned n) {
+void bucket_sort(int* arr, unsigned int size) {
 
 	unsigned int start_time = clock();// начальное время 
 
-	vector<int> b[100];
+	vector<int>* v = new vector<int>[size];
+	unsigned int i = 0;
+	unsigned int basis;
+	unsigned int concat_index = 0;
 
-	for (unsigned long int i = 0; i < n; i++) {
-		int bi = n * arr[i];
-		b[bi].push_back(arr[i]);
+	for (i=0; i < size; ++i) {
+		basis = size * arr[i];
+		v[basis].push_back(arr[i]);
 	}
-
-	for (unsigned long int i = 0; i < n; i++) {
-		sort(b[i].begin(), b[i].end());
+	for (i = 0; i < size; i++) {
+		sort(v[i].begin(), v[i].end());
 	}
-	unsigned index = 0;
-	for (unsigned i = 0; i < n; i++) {
-		for (unsigned j = 0; j < b[i].size(); j++) {
-			arr[index++] = b[i][j];
+	for (i = 0; i < size; i++) {
+		for (size_t j = 0; j < v[i].size(); j++) {
+			arr[concat_index] = v[i][j];
+			concat_index++;
 		}
 	}
+
+	delete[] v;
 
 	unsigned int end_time = clock();
 	unsigned int search_time = end_time - start_time;
@@ -125,14 +129,79 @@ void main() {
 	cin >> zxc;
 
 	string file;
-	cout << "из какого файла брать данные? > ";
-	cin >> file;
-
-
+	int typeEl;
 	unsigned long int size;
-	cout << "выберите размерность массива (1000,10000,1000000) > ";
-	cin >> size;
+	cout << endl;
+	cout << "1.элементы уже упорядочены(1000)" << endl;
+	cout << "2.элементы уже упорядочены(10000)" << endl;
+	cout << "3.элементы уже упорядочены(1000000)" << endl;
+	cout << "4.элементы упорядочены в обратном порядке(1000)" << endl;
+	cout << "5.элементы упорядочены в обратном порядке(10000)" << endl;
+	cout << "6.элементы упорядочены в обратном порядке(1000000)" << endl;
+	cout << "7.расстановка элементов случайна(1000)" << endl;
+	cout << "8.расстановка элементов случайна(10000)" << endl;
+	cout << "9.расстановка элементов случайна(1000000)" << endl;
+
+	cout << "тип элементов > ";
+	cin >> typeEl;
+
+	if (typeEl == 1) {
+
+		file = "sort1000.txt";
+		size = 1000;
+
+	}
+	if (typeEl == 2) {
+
+		file = "sort10000.txt";
+		size = 10000;
+
+	}
+	if (typeEl == 3) {
+
+		file = "sort1000000.txt";
+		size = 1000000;
+
+	}
+	if (typeEl == 4) {
+
+		file = "sort1000negative.txt";
+		size = 1000;
+
+	}
+	if (typeEl == 5) {
+
+		file = "sort10000negative.txt";
+		size = 10000;
+
+	}
+	if (typeEl == 6) {
+
+		file = "sort1000000negative.txt";
+		size = 1000000;
+
+	}
+	if (typeEl == 7) {
+
+		file = "rand1000.txt";
+		size = 1000;
+
+	}
+	if (typeEl == 8) {
+
+		file = "rand10000.txt";
+		size = 10000;
+
+	}
+	if (typeEl == 9) {
+
+		file = "rand1000000.txt";
+		size = 1000000;
+
+	}
+	
 	int* array = new int[size];
+
 
 	ifstream in(file);
 	if (in.is_open()) {
@@ -149,9 +218,9 @@ void main() {
 
 		cout << endl;
 		cout << "Сортировка выбором \n";
+		selection_sort(array, size);
 		cout << "Результат выведен в файл > " << "out.txt" << endl;
 		
-		selection_sort(array, size);
 
 		ofstream out("out.txt");
 		for (unsigned i = 0; i < size; i++) {
@@ -166,9 +235,9 @@ void main() {
 
 		cout << endl;
 		cout << "Сортировка вставками:" << endl;
+		insert_sort(array, size);
 		cout << "Результат выведен в файл > " << "out.txt" << endl;
 
-		insert_sort(array, size);
 
 		ofstream out("out.txt");
 		for (unsigned i = 0; i < size; i++) {
@@ -183,9 +252,9 @@ void main() {
 
 		cout << endl;
 		cout << "Пузырьковая сортировка: " << endl;
+		buble_sort(array, size);
 		cout << "Результат выведен в файл > " << "out.txt" << endl;
 
-		buble_sort(array, size);
 
 		ofstream out("out.txt");
 		for (unsigned i = 0; i < size; i++) {
@@ -200,11 +269,8 @@ void main() {
 
 		cout << endl;
 		cout << "Карманная сортировка: " << endl;
+		bucket_sort(array, size);
 		cout << "Результат выведен в файл > " << "out.txt" << endl;
-
-		const unsigned n = sizeof(array) / sizeof(array[0]);
-
-		bucket_sort(array, n);
 
 		ofstream out("out.txt");
 		for (unsigned i = 0; i < size; i++) {
@@ -215,5 +281,6 @@ void main() {
 		out.close();
 
 	}
+	
 
 }
