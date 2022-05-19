@@ -23,45 +23,34 @@ void main() {
 
 	vector <int> ::iterator iter;
 	vector <int> ::iterator iter_end;
+	vector <int> ::iterator ii;
 
 	iter = first.begin();// итератор на первый элемент контейнера
 	iter_end = first.end();// итератор на последний элемент контейнера
-	
-	while (iter != first.end()) {
 
-		if (*iter < 0) {
-
-			while (*iter < 0) {
-
-				iter++;
-
-			}
-			break;
-
+	if (*iter < 0) {
+		while (*iter < 0) {
+			iter++;
+			if (*iter > 0)
+				break;
 		}
-		else
-			cout << "no negative element *_*" << endl;
-		break;
-
 	}
 
-	int sum = 0;
+	if (*(iter_end - 1) < 0) {
+		while (*(iter_end - 1) < 0) {
+			iter_end--;
+			if (*(iter_end - 1) > 0) {
+				break;
+			}
+		}
+	}
 
+	unsigned sum = 0;
 	while (iter != iter_end) {
 
-		if (*iter < 0)break;
 		sum += *iter;
 		iter++;
-
-	}
-
-	//cout << *iter << endl;
-
-	iter = first.begin();
-	while (iter != first.end()) {
-
-		cout <<" "<< *iter;
-		iter++;
+		
 	}
 
 	cout << endl << "sum = " << sum << endl;
