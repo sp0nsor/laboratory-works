@@ -23,7 +23,7 @@ void main() {
 
 	vector <int> ::iterator iter;
 	vector <int> ::iterator iter_end;
-	vector <int> ::iterator ii;
+	//vector <int> ::iterator ii;
 
 	iter = first.begin();// итератор на первый элемент контейнера
 	iter_end = first.end();// итератор на последний элемент контейнера
