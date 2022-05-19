@@ -114,18 +114,13 @@ public:
 
 	void sort_array() {
 
-		int zxc;
+		for (unsigned i = 0; i < n; ++i) {
 
-		for (int i = 0; i < n; i++) {
+			for (unsigned j = i + 1; j < n; ++j) {
 
-			zxc = Arr[i];
-			for (int j = i; j < n; j++) {
+				if (Arr[i] > Arr[j]) {
 
-				if (zxc > Arr[j]) {
-
-					zxc = Arr[j];
-					Arr[j] = Arr[i];
-					Arr[i] = zxc;
+					swap(Arr[i], Arr[j]);
 
 				}
 
@@ -151,6 +146,6 @@ void main() {
 	cout << "second_sort [ ";
 	Array.second_out_put();
 	cout << "]" << endl;
-	int Arr[] = { 5, 1,3,7 };
+	//int Arr[] = { 5, 1,3,7 };
 	cout << Array << endl;
 }
