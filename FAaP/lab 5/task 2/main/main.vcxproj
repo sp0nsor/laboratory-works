@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{e2545c58-5caa-474f-a167-d96fec4231e7}</ProjectGuid>
-    <RootNamespace>task1</RootNamespace>
+    <ProjectGuid>{adfaab88-f993-4211-ba1d-1db3733b2cdf}</ProjectGuid>
+    <RootNamespace>main</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,17 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="iostudents.cpp" />
-    <ClCompile Include="students.cpp" />
-    <ClCompile Include="task 1.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="iostudents.h" />
-    <ClInclude Include="students.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="data.txt" />
-    <Text Include="out.txt" />
+    <ClInclude Include="music.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

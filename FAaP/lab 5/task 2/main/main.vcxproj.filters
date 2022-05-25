@@ -15,30 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="task 1.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="students.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="iostudents.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="students.h">
+    <ClInclude Include="music.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="iostudents.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="data.txt">
-      <Filter>Файлы заголовков</Filter>
-    </Text>
-    <Text Include="out.txt">
-      <Filter>Файлы заголовков</Filter>
-    </Text>
   </ItemGroup>
 </Project>

@@ -1,43 +1,41 @@
 #pragma once
 #include <string>
-#include<vector>
+#include <vector>
 #include <iostream>
 using namespace std;
-
 class MUSIC {
 
 private:
 
 	string Name;
-	string Composition;
+	string NameComp;
 	string Style;
-	int Time;
+	unsigned Time;
 
 	friend ostream& operator << (ostream& out, MUSIC Music);
 	friend istream& operator >> (istream& in, MUSIC& Music);
-	friend bool operator < (MUSIC Music1, MUSIC Music2);
+	friend bool operator < (MUSIC mus1, MUSIC mus2);
 
 public:
 
-	string get_name() {
-
+	string get_Name() {
 		return Name;
-
 	}
 
 };
 
-
 class CATALOG {
 
 private:
-	string name;
-	vector<MUSIC>Music;
+
+	string Name;
+	vector<MUSIC> Music;
 
 public:
 
+	void print_by_name(string name);
 	void sort();
-	friend ostream& operator << (ostream& out, CATALOG Catalog);
+	friend ostream& operator<< (ostream& out, CATALOG Catalog);
 	friend istream& operator >> (istream& in, CATALOG& Catalog);
 
 };

@@ -1,5 +1,5 @@
 #pragma once
-#include "music.h"
+#include "Music.h"
 
 istream& operator >> (istream& in, MUSIC& Music);
 ostream& operator << (ostream& out, MUSIC Music);
