@@ -33,9 +33,9 @@ private:
 
 public:
 
+	void print_by_name(string name);
 	void sort();
 	friend ostream& operator<< (ostream& out, CATALOG Catalog);
 	friend istream& operator >> (istream& in, CATALOG& Catalog);
-	//friend void out_music_name(CATALOG Catalog, MUSIC Music);
 
 };

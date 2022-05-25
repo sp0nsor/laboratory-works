@@ -16,7 +16,7 @@ ostream& operator << (ostream& out, MUSIC Music) {
 
 	out.width(8);
 	out.fill('0');
-	out << Music.Time << " " << Music.NameComp << " " << Music.Name[0] << " " << Music.Style[0] << ".";
+	out << Music.Time << " " << Music.NameComp << " " << Music.Name << " " << Music.Style << ".";
 	return out;
 
 }
@@ -54,3 +54,4 @@ ostream& operator << (ostream& out, CATALOG Catalog) {
 	return out;
 
 }
+

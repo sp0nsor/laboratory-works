@@ -11,29 +11,36 @@ void main(int argc, char*argv[]) {
 	setlocale(LC_ALL, "ru");
 
 	char file_name[20];
+	string out_put_file_name;
 	cout << "из кaкого файла вводить данные? " << endl;
 	cin.getline(file_name, sizeof(file_name));
+	string name;
+	//cout << "введите имя исполнителя > ";
+	//cin >> name;
 
 	CATALOG Catalog;
+	CATALOG cat;
 	ifstream fin(file_name);
 	if (fin.is_open()) {
 
 		fin >> Catalog;
 		fin.close();
 
+		cout << "имя исполнителя ";
+		cin >> name;
+		Catalog.print_by_name(name);
+
 		Catalog.sort();
-		cout << Catalog;
+		cout << endl <<"в какой файл выводить данные? " << endl;
+		cin >> out_put_file_name;
 
-		cout << "в какой файл выводить данные? " << endl;
-		cin.getline(file_name, sizeof(file_name));
-
-		ofstream fout(file_name);
+		ofstream fout(out_put_file_name);
 		if (fout.is_open()) {
 
 			fout << Catalog;
 			fout.close();
 
-			cout << "данные выведены в файл " << file_name << endl;
+			cout << "данные выведены в файл " << out_put_file_name << endl;
 
 		}
 		else {
