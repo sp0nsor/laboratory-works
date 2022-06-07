@@ -36,5 +36,8 @@
   <ItemGroup>
     <Text Include="data.txt" />
     <Text Include="out.txt" />
+    <Text Include="DataName.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
   </ItemGroup>
 </Project>

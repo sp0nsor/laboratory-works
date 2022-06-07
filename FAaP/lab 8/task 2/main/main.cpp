@@ -6,6 +6,7 @@
 
 using namespace std;
 
+
 void main(int argc, char*argv[]) {
 
 	setlocale(LC_ALL, "ru");
@@ -15,11 +16,11 @@ void main(int argc, char*argv[]) {
 	cout << "из кaкого файла вводить данные? " << endl;
 	cin.getline(file_name, sizeof(file_name));
 	string name;
+	string DataName;
 	//cout << "введите имя исполнителя > ";
 	//cin >> name;
 
 	CATALOG Catalog;
-	CATALOG cat;
 	ifstream fin(file_name);
 	if (fin.is_open()) {
 

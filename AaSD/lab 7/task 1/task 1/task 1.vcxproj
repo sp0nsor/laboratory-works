@@ -141,6 +141,22 @@
   <ItemGroup>
     <ClCompile Include="task 1.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Generator\rand500.txt" />
+    <Text Include="..\Generator\rand5000.txt" />
+    <Text Include="..\Generator\rand50000.txt" />
+    <Text Include="..\Generator\reverse500.txt" />
+    <Text Include="..\Generator\reverse5000.txt" />
+    <Text Include="..\Generator\reverse50000.txt" />
+    <Text Include="..\Generator\sort500.txt" />
+    <Text Include="..\Generator\sort5000.txt" />
+    <Text Include="..\Generator\sort50000.txt" />
+    <Text Include="F1.txt" />
+    <Text Include="F2.txt" />
+    <Text Include="F3.txt" />
+    <Text Include="out.txt" />
+    <Text Include="test.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
