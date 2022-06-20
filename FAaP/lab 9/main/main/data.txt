@@ -1,0 +1,2 @@
+armor 30 24
+weapon 43 20
