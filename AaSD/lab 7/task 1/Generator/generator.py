@@ -25,7 +25,7 @@ while (i < n):
 
 f2.close()
 
-#--------
+#---------
 
 f3 = open("sort50000.txt", "w")
 
