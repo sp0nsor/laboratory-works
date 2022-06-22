@@ -48,7 +48,7 @@ void main() {
         int N;
         cout << "введите количество чисел  > ";
         enter_number(N);
-        generate(N);
+        //generate(N);
         fstream fin("data.txt");
         vector <long double> V;
         long double ff;
