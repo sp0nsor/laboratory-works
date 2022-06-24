@@ -15,8 +15,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ConsoleApplication102.cpp">
+    <ClCompile Include="task 2.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="words.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="outwords.txt" />
   </ItemGroup>
 </Project>

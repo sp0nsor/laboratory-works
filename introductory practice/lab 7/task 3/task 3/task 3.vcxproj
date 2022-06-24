@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{5f57ed56-0c87-458b-b425-1ab947903307}</ProjectGuid>
-    <RootNamespace>ConsoleApplication102</RootNamespace>
+    <ProjectGuid>{38a2330d-cc35-4af6-961b-7c0a92571698}</ProjectGuid>
+    <RootNamespace>task3</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,7 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ConsoleApplication102.cpp" />
+    <ClCompile Include="task 3.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="State.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
