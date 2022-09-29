@@ -15,7 +15,7 @@ HashTable = [[] for _ in range(11)]
 
 
 def hash_function(key):
-    return key % 11
+    return key % 100
 
 def insert_hash(HashTable, value ):
     hash_key = hash_function(value)
@@ -40,5 +40,3 @@ while tmp < len(array):
 
 
 display_hash(HashTable)
-
-    
