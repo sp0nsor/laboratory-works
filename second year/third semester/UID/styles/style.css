@@ -1,0 +1,122 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto/Roboto-Medium.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto/Roboto-MediumItalic.ttf") format("ttf");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto/Roboto-Thin.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto/Roboto-ThinItalic.ttf") format("ttf");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("../fonts/PressStart2P/PressStart2P-Regular.ttf") format("ttf");
+}
+
+
+
+.sidebar__item {
+  margin: 10px 0 0 0;
+}
+
+.history__heading {
+  text-align: center;
+}
+
+.history__guido {
+  float: right;
+}
+
+.history__python-icon {
+  float: left;
+}
+
+.review__center-floating {
+  display: flex;
+}
+
+.review__brain-time {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 1px dashed red;
+  opacity: 0.6;
+}
+
+.review__brain-time-img {
+  width: 50%;
+  height: 50%;
+  animation: spin infinite linear;
+  animation-duration: 4000ms;
+}
+
+.tag__list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  flex-wrap: wrap;
+}
+
+.props__list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  flex-wrap: wrap;
+}
+
+table.t1 {
+  margin: 1em auto;
+  border-collapse: collapse;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.t1 th, .t1 td {
+  padding: 4px 8px;
+}
+.t1 thead th {
+  background: #4f81bd;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 15px;
+  color: #fff;
+}
+.t1 tr {
+  border-right: 1px solid #95b3d7;
+}
+.t1 tbody tr {
+  border-bottom: 1px solid #95b3d7;
+}
+.t1 tbody tr:nth-child(odd) {
+  background: #dbe5f0;
+}
+.t1 tbody th, .t1 tbody tr td {
+  border-right: 1px solid #95b3d7;
+}
+.t1 tfoot th {
+  background: #4f81bd;
+  text-align: center;
+  font-weight: normal;
+  font-size: 10px;
+  color: #fff;
+}
+.t1 tr *:nth-child(3), .t1 tr *:nth-child(4) {
+  text-align: center;
+}

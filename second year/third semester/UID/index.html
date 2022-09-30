@@ -24,11 +24,7 @@
 </aside>
 <div class="container">
     <selection class="history" id="history">
-        <h2 class="history_heading">История</h2>
-        <figure>
-            <img src="./imp/Wikirl.jpg" alt="php">
-            <figcaption>создатель</figcaption>
-        </figure>
+        <h2 class="history__heading">История</h2>
         <div class="history_twxt">
             <p>В 1994 году датский прогрёаммист <a href="https://ru.wikipedia.org/wiki/Лердорф,_Расмус" target="_blank">Расмус Лердорф</a> разработал на C[16] набор CGI-скриптов для учёта посетителей его онлайн-резюме, обрабатывающий шаблоны HTML-документов. Лердорф назвал набор Personal Home Page Tools (Инструменты для личной домашней страницы). Вскоре функциональности перестало хватать, и Лердорф разработал новый интерпретатор шаблонов PHP/FI (англ. Personal Home Page / Forms Interpreter — «персональная домашняя страница / интерпретатор форм»)[17].
 
@@ -39,18 +35,19 @@
 Версия PHP 3.0 подверглась значительной переработке, определившей современный облик и стиль языка программирования. В 1997 году два израильских программиста, Энди Гутманс и Зеев Сураски, полностью переписали код интерпретатора. PHP 3.0 был официально выпущен в июне 1998 года[11].
 
 Одной из сильнейших сторон PHP 3.0 была возможность расширения ядра дополнительными модулями.</p>
-<figure class="php-icon">
-    <img src="/imp/5968332.png" alt="php-icon">
-    <figcaption>php-icon</figcaption>
+<figure>
+    <img src="./img/Wikirl.jpg" alt="history__php">
+    <figcaption>Cоздатель</figcaption>
 </figure>
+
 <p> Впоследствии интерфейс написания расширений привлёк к PHP множество сторонних разработчиков, работающих над своими модулями, что дало PHP возможность работать с огромным количеством баз данных, протоколов, поддерживать большое число API. Большое количество разработчиков привело к быстрому развитию языка и стремительному росту его популярности. С этой версии акроним php расшифровывается как «PHP: hypertext Preprocessor», вместо устаревшего «Personal Home Page».
 
 К зиме 1998 года, практически сразу после официального выхода PHP 3.0, Энди Гутманс и Зеев Сураски начали переработку ядра PHP. В задачи входило увеличение производительности сложных приложений и улучшение модульности базиса кода PHP. Новый движок, названный Zend Engine, успешно справлялся с поставленными задачами и впервые был представлен в середине 1999 года. PHP 4.0, основанный на этом движке и принёсший с собой набор дополнительных функций, официально вышел в мае 2000 года. В дополнение к улучшению производительности, PHP 4.0 имел ещё несколько ключевых нововведений, таких как поддержка сессий, буферизация вывода, более безопасные способы обработки вводимой пользователем информации и несколько новых языковых конструкций.</p>      
     </div>
     </selection>
     <section class="review" id="review">
-        <h2 class="review_heading">Обзор</h2>
-        <div class="review_text">
+        <h2 class="review__heading">Обзор</h2>
+        <div class="review__text">
             <p>
                 Пятая версия PHP была выпущена разработчиками 13 июля 2004 года. Изменения включают обновление ядра Zend (Zend Engine 2), что существенно увеличило эффективность интерпретатора. Введена поддержка языка разметки XML. Полностью переработаны функции ООП, которые стали во многом схожи с моделью, используемой в Java. В частности, введён деструктор, открытые, закрытые и защищённые члены и методы, окончательные члены и методы, интерфейсы и клонирование объектов. В последующих версиях также были введены пространства имён, замыкания и целый ряд достаточно серьёзных изменений, количественно и качественно сравнимых с теми, которые появились при переходе на PHP 5.0.
 
@@ -60,6 +57,10 @@ PHP 7
 В 2014 году было проведено голосование, по результатам которого следующая версия получила название PHP 7[23]. Выход новой версии планировался в середине октября 2015 года[24]. В марте 2015 года Zend представили инфографику, в которой описаны основные нововведения PHP 7[25].
 
 3 декабря 2015 года было объявлено о выходе PHP версии 7.0.0[26].</p>
+<figure>
+    <img src="/img/logo.jpg" alt="php-icon">
+    <figcaption>php-icon</figcaption>
+</figure>
 <p>
 
 Новая версия основывается на экспериментальной ветви PHP, которая изначально называлась phpng (англ. PHP Next Generation «следующее поколение»), и разрабатывалась с упором на увеличение производительности и уменьшение потребления памяти[27]. В новой версии добавлена возможность указывать тип возвращаемых из функции данных[28], добавлен контроль передаваемых типов для данных[29], а также новые операторы.
@@ -73,6 +74,127 @@ PHP версии 8.0 была выпущена 26 ноября 2020-го[31]. Г
 
             </p>
         </div>
+    </section>
+    <section class="code" id="code">
+        <h2 class="code__heding">
+            Пример кода
+        </h2>
+        <pre><code data-language="PHP6">
+            abstract class PHP_Token
+{
+    /**
+     * @var string
+     */
+    protected $text;
+
+    /**
+     * @var int
+     */
+    protected $line;
+
+    /**
+     * @var PHP_Token_Stream
+     */
+    protected $tokenStream;
+
+    /**
+     * @var int
+     */
+    protected $id;
+
+    /**
+     * @param string           $text
+     * @param int              $line
+     * @param PHP_Token_Stream $tokenStream
+     * @param int              $id
+     */
+    public function __construct($text, $line, PHP_Token_Stream $tokenStream, $id)
+    {
+        $this->text        = $text;
+        $this->line        = $line;
+        $this->tokenStream = $tokenStream;
+        $this->id          = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->text;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLine()
+    {
+        return $this->line;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}
+
+abstract class PHP_TokenWithScope extends PHP_Token
+{
+    /**
+     * @var int
+     */
+    protected $endTokenId;
+
+    /**
+     * Get the docblock for this token
+     *
+     * This method will fetch the docblock belonging to the current token. The
+     * docblock must be placed on the line directly above the token to be
+     * recognized.
+     *
+     * @return string|null Returns the docblock as a string if found
+     */
+    public function getDocblock()
+    {
+        $tokens            = $this->tokenStream->tokens();
+        $currentLineNumber = $tokens[$this->id]->getLine();
+        $prevLineNumber    = $currentLineNumber - 1;
+
+        for ($i = $this->id - 1; $i; $i--) {
+            if (!isset($tokens[$i])) {
+                return;
+            }
+
+            if ($tokens[$i] instanceof PHP_Token_FUNCTION ||
+                $tokens[$i] instanceof PHP_Token_CLASS ||
+                $tokens[$i] instanceof PHP_Token_TRAIT) {
+                // Some other trait, class or function, no docblock can be
+                // used for the current token
+                break;
+            }
+
+            $line = $tokens[$i]->getLine();
+
+            if ($line == $currentLineNumber ||
+                ($line == $prevLineNumber &&
+                 $tokens[$i] instanceof PHP_Token_WHITESPACE)) {
+                continue;
+            }
+
+            if ($line < $currentLineNumber &&
+                !$tokens[$i] instanceof PHP_Token_DOC_COMMENT) {
+                break;
+            }
+
+            return (string) $tokens[$i];
+        }
+    }
+        </code>
+
+        </pre>
     </section>
 </div>
 </header>
