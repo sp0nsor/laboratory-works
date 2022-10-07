@@ -5,9 +5,9 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="./styles/normalize.css">
-  <link rel="stylesheet" href="./styles/theme.css">
-  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="./styles/normalize.css"/>
+  <link rel="stylesheet" href="./styles/theme.css"/>
+  <link rel="stylesheet" href="styles/style.css"/>
   <title>PHP story</title>
 </head>
 <body>
@@ -25,7 +25,6 @@
 <div class="container">
     <figure class="history__owner">
         <img src="./img/Wikirl.jpg" alt="history__owner" class = "img__1">
-        <figcaption>Cоздатель</figcaption>
     </figure>
     <selection class="history" id="history">
         <h2 class="history__heading">История</h2>
@@ -78,6 +77,10 @@ PHP версии 8.0 была выпущена 26 ноября 2020-го[31]. Г
 9 июля 2020 года Дэйл Хирт (англ. Dale Hirt), менеджер проекта PHP в Microsoft, в рассылке php.internals выпустил сообщение[35] о том, что после выпуска версии PHP 8.0 Microsoft прекратит поддержку разработки этого языка программирования для Windows[36]. Специалисты Microsoft занимались компиляцией бинарных версий интерпретатора для ОС Windows и тестированием их безопасности. В сообществе разработчиков PHP сообщили, что примут все необходимые меры, чтобы найти в ближайшее время альтернативный вариант для организации поддержки PHP 8.0 и выше для Windows, например, своими силами[37]
 
             </p>
+            <figure class="review__brain-time">
+                <img class="review__brain-time-img" src="img/gavno.png" alt="Brain time">
+                <figcaption>PHP as a language</figcaption>
+            </figure>
             <p>
                 Ключевое слово class было зарезервировано ещё в третьей версии языка. В четвёртой версии стало возможно создавать классы и объекты на их основе. Однако принципы ООП поддерживались лишь частично, так например, все члены (переменные и методы) были открыты. К тому же создание объектов было дорогой операцией и работало медленно.
 
@@ -93,12 +96,38 @@ PHP версии 8.0 была выпущена 26 ноября 2020-го[31]. Г
 
 Экземпляры класса создаются с помощью ключевого слова new, обращение к свойствам и методам объекта производится с использованием оператора ->. Для доступа к членам класса из его методов используется переменная $this.
             </p>
+            <ol>
+                <li>
+                    phphph
+                </li>
+                <li>popopopopo</li>
+                <li>pipwer</li>
+                <li>wertyujjhgfdsdf</li>
+            </ol>
         </div>
     </section>
     <section class="code" id="code">
         <h2 class="code__heding">
             Пример кода
         </h2>
+        <table class="t1">
+            <caption>Типы в PHP</caption>
+            <thead>
+              <tr><th>Тип</th><th>Изменяемость</th><th>Описание</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>bool</th><td>Неизменяемый</td><td>Логический тип</td></tr>
+              <tr><th>bytearray</th><td>Изменяемый</td><td>Массив байтов</td></tr>
+              <tr><th>bytes</th><td>Неизменяемый</td><td>Массив байтов</td></tr>
+              <tr><th>complex</th><td>Неизменяемый</td><td>Комплексное число</td></tr>
+              <tr><th>dict</th><td>I Am Number Four</td><td>Словарь (ассоциативный массив), представляет собой коллекцию пар «ключ—значение»; значение может быть любого типа, ключ должен иметь хешируемый тип</td></tr>
+              <tr><th>ellipsis</th><td>Неизменяемый</td><td>Многоточие[en] (элипсис). Используется в основном в NumPy для сокращённого задания среза многомерного массива. В самом Python присутствует для поддержки пользовательских типов и таких расширений, как NumPy</td></tr>
+              <tr><th>float</th><td>Неизменяемый</td><td>Число с плавающей запятой. Степень точности зависит от платформы, но на практике обычно реализуется в виде 64-битного 53-разрядного числа</td></tr>
+              <tr><th>frozenset</th><td>Неизменяемый</td><td>Неупорядочное множество, не содержит дубликатов; может содержать внутри себя различные хешируемые типы данных</td></tr>
+              <tr><th>list</th><td>Изменяемый</td><td>Целое число неограниченного размера</td></tr>
+              <tr><th>NoneType</th><td>Неизменяемый</td><td>Список, может содержать внутри себя различные типы данных</td></tr>
+            </tbody>
+          </table>
         <pre><code data-language="PHP" class="PHP__code">
             abstract class PHP_Token
 {
