@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DinaryTreeExample;
+using System;
 using System.Collections.Generic;
 
 namespace BinaryTreeExample
@@ -19,7 +20,35 @@ namespace BinaryTreeExample
             tree.Inset(87);
             tree.Inset(100);
 
-            tree.IsBalanced();
         }
+
+        public static int getHeight(TreeNode root)
+        {
+            if (root == null)
+            {
+                return 0;
+            }
+
+            return Math.Max(getHeight(root.LeftNode), getHeight(root.RightNode)) + 1;
+        }
+
+        public static bool isBalanced(TreeNode root)
+        {
+            if (root == null)
+            {
+                return true;
+            }
+
+            int heightDiff = getHeight(root.LeftNode) - getHeight(root.RightNode);
+            if (Math.Abs(heightDiff) > 1)
+            {
+                return false;
+            }
+            else
+            {
+                return (isBalanced(root.LeftNode) && isBalanced(root.RightNode));
+            }
+        }
+
     }
 }
