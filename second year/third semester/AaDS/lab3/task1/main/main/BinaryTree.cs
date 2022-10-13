@@ -1,206 +1,197 @@
+using DinaryTreeExample;
 using System;
-using System.Collections.Generic;
-namespace Trees
-{
-    public class BinaryTree<T> where T : IComparable<T>
-    {
-        private BinaryTree<T> parent, left, right;
-        private T val;
-        private List<T> listForPrint = new List<T>();
+using System.Data;
 
-        public BinaryTree(T val, BinaryTree<T> parent)
+namespace BinaryTreeExample
+{
+    public class BinaryTree
+    {
+        private TreeNode root;
+        public TreeNode Root
         {
-            this.val = val;
-            this.parent = parent;
+            get { return root; }
         }
 
-        public void add(T val)
+        public TreeNode Find (int data)
         {
-            if (val.CompareTo(this.val) < 0)
+
+            if (root != null)
             {
-                if (this.left == null)
-                {
-                    this.left = new BinaryTree<T>(val, this);
-                }
-                else if (this.left != null)
-                    this.left.add(val);
+                return root.Find(data);
             }
             else
             {
-                if (this.right == null)
-                {
-                    this.right = new BinaryTree<T>(val, this);
-                }
-                else if (this.right != null)
-                    this.right.add(val);
+                return null;
             }
+
         }
 
-        private BinaryTree<T> _search(BinaryTree<T> tree, T val)
+
+        public void Inset(int data)
         {
-            if (tree == null) return null;
-            switch (val.CompareTo(tree.val))
+            if (root != null)
             {
-                case 1: return _search(tree.right, val);
-                case -1: return _search(tree.left, val);
-                case 0: return tree;
-                default: return null;
+                root.Insert(data);
             }
+            else
+            {
+                root = new TreeNode(data);
+            }
+           
         }
 
-        public BinaryTree<T> search(T val)
+
+        public void Remove(int data)
         {
-            return _search(this, val);
-        }
+            TreeNode current = root;
+            TreeNode parent = root;
 
-        public bool remove(T val)
-        {
-            //Проверяем, существует ли данный узел
-            BinaryTree<T> tree = search(val);
-            if (tree == null)
+            bool isLeftChild = false;
+
+            if (current == null)
             {
-                //Если узла не существует, вернем false
-                return false;
+                return;
             }
-            BinaryTree<T> curTree;
-
-            //Если удаляем корень
-            if (tree == this)
+            while(current != null && current.Data != data)
             {
-                if (tree.right != null)
+                parent = current;
+                
+                if (data < current.Data)
                 {
-                    curTree = tree.right;
+                    current = current.LeftNode;
+                    isLeftChild = true;
                 }
-                else curTree = tree.left;
-
-                while (curTree.left != null)
-                {
-                    curTree = curTree.left;
-                }
-                T temp = curTree.val;
-                this.remove(temp);
-                tree.val = temp;
-
-                return true;
-            }
-
-            //Удаление листьев
-            if (tree.left == null && tree.right == null && tree.parent != null)
-            {
-                if (tree == tree.parent.left)
-                    tree.parent.left = null;
                 else
                 {
-                    tree.parent.right = null;
+                    current = current.RightNode;
+                    isLeftChild = false;
                 }
-                return true;
+
             }
 
-            //Удаление узла, имеющего левое поддерево, но не имеющее правого поддерева
-            if (tree.left != null && tree.right == null)
+            if (current == null)
             {
-                //Меняем родителя
-                tree.left.parent = tree.parent;
-                if (tree == tree.parent.left)
-                {
-                    tree.parent.left = tree.left;
-                }
-                else if (tree == tree.parent.right)
-                {
-                    tree.parent.right = tree.left;
-                }
-                return true;
+                return;
             }
 
-            //Удаление узла, имеющего правое поддерево, но не имеющее левого поддерева
-            if (tree.left == null && tree.right != null)
+            if (current.RightNode == null && current.LeftNode == null)
             {
-                //Меняем родителя
-                tree.right.parent = tree.parent;
-                if (tree == tree.parent.left)
+                if (current == root)
                 {
-                    tree.parent.left = tree.right;
+                    root = null;
                 }
-                else if (tree == tree.parent.right)
-                {
-                    tree.parent.right = tree.right;
-                }
-                return true;
-            }
-
-            //Удаляем узел, имеющий поддеревья с обеих сторон
-            if (tree.right != null && tree.left != null)
-            {
-                curTree = tree.right;
-
-                while (curTree.left != null)
-                {
-                    curTree = curTree.left;
-                }
-
-                //Если самый левый элемент является первым потомком
-                if (curTree.parent == tree)
-                {
-                    curTree.left = tree.left;
-                    tree.left.parent = curTree;
-                    curTree.parent = tree.parent;
-                    if (tree == tree.parent.left)
-                    {
-                        tree.parent.left = curTree;
-                    }
-                    else if (tree == tree.parent.right)
-                    {
-                        tree.parent.right = curTree;
-                    }
-                    return true;
-                }
-                //Если самый левый элемент НЕ является первым потомком
                 else
                 {
-                    if (curTree.right != null)
+                    if (isLeftChild)
                     {
-                        curTree.right.parent = curTree.parent;
+                        parent.LeftNode = null;
                     }
-                    curTree.parent.left = curTree.right;
-                    curTree.right = tree.right;
-                    curTree.left = tree.left;
-                    tree.left.parent = curTree;
-                    tree.right.parent = curTree;
-                    curTree.parent = tree.parent;
-                    if (tree == tree.parent.left)
+                    else
                     {
-                        tree.parent.left = curTree;
+                        parent.RightNode = null;
                     }
-                    else if (tree == tree.parent.right)
-                    {
-                        tree.parent.right = curTree;
-                    }
-
-                    return true;
                 }
             }
-            return false;
+
+            else if(current.RightNode == null)
+            {
+                if(current == root)
+                {
+                    root = current.LeftNode;
+                }
+                else
+                {
+                    if (isLeftChild)
+                    {
+                        parent.LeftNode = current.LeftNode;
+                    }
+                    else
+                    {
+                        parent.RightNode = current.LeftNode;
+                    }
+                }
+            }
+            else if(current.LeftNode == null)
+            {
+                if (current == root)
+                {
+                    root = current.RightNode;
+                }
+                else
+                {
+                    if (isLeftChild)
+                    {
+                        parent.LeftNode = current.LeftNode;
+                    }
+                    else
+                    {
+                        parent.RightNode = current.RightNode;
+                    }
+                }
+            }
+            else
+            {
+                TreeNode successor = GetSuccessor(current);
+
+                if (current == root)
+                {
+                    root = successor;
+                }
+                else if (isLeftChild)
+                {
+                    parent.LeftNode = successor;
+                }
+                else
+                {
+                    parent.RightNode = successor;
+                }
+            }
         }
 
-        private void _print(BinaryTree<T> node)
+
+        private TreeNode GetSuccessor(TreeNode node)
         {
-            if (node == null) return;
-            _print(node.left);
-            listForPrint.Add(node.val);
-            Console.Write(node + " ");
-            if (node.right != null)
-                _print(node.right);
-        }
-        public void print()
-        {
-            listForPrint.Clear();
-            _print(this);
-            Console.WriteLine();
+            TreeNode parentOfSuccessor = node;
+            TreeNode successor = node;
+            TreeNode current = node.RightNode;
+
+            while (current != null)
+            {
+                parentOfSuccessor = successor;
+                successor = current;
+                current = current.LeftNode;
+
+            }
+
+            if (successor != node.RightNode)
+            {
+                parentOfSuccessor.LeftNode = successor.RightNode;
+                successor.RightNode = node.RightNode;
+            }
+
+            successor.LeftNode = node.LeftNode;
+
+            return successor;
         }
 
-        public override string ToString()
+        public int Height()
         {
-            return val.ToString();
+            if (root == null) return 0;
+
+            return root.Hight();
         }
+
+        public bool IsBalanced()
+        {
+            if (root == null)
+            {
+                Console.WriteLine("Tree is Balansed");
+                return true;
+            }
+
+            return root.IsBalanced();
+
+        }
+
     }
 }

@@ -1,41 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
-namespace Trees
+namespace BinaryTreeExample
 {
     class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            Random rList = new Random(47);
-            Random rTree = new Random(47);
-            int maxVal = 10;
-            int n = 10;
+            BinaryTree tree = new BinaryTree();
 
-            List<int> list = new List<int>();
-            list.Add(rList.Next(maxVal));
-            BinaryTree<int> tree = new BinaryTree<int>(maxVal, null);
-            int[] nabor = new int[12];
+            tree.Inset(12);
+            tree.Inset(21);
+            tree.Inset(90);
+            tree.Inset(7);
+            tree.Inset(32);
+            tree.Inset(48);
+            tree.Inset(57);
+            tree.Inset(87);
+            tree.Inset(100);
 
-
-            for (int i = 0; i < n; i++)
-            {
-                int val = rList.Next(maxVal);
-                if (!list.Contains(val))
-                {
-                    list.Add(val);
-                    tree.add(val);
-                }
-            }
-
-
-            tree.print();
-            tree.remove(10);
-            tree.print();
-            Console.WriteLine("Data loaded.");
-            Console.ReadKey();
+            tree.IsBalanced();
         }
     }
 }
-
