@@ -1,61 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="normalize.css">
 </head>
 <body>
-  <div class="card">
-    <h2>t3rixis car form</h2>
-    <div class="row">
-      <div class="col">
-        <div class="form-group">
-          <label for="fname">Марка машины</label>
-          <input type="text" id="fname" name="firstname" placeholder="">
-        </div>
-      </div>
-  
-      <div class="col">
-        <div class="form-group">
-          <label for="sname">Модель</label>
-          <input type="text" id="sname" name="surname" placeholder="">
-        </div>
-      </div>
-  
-      <div class="col">
-        <div class="form-group">
-          <label for="email">Год выпуска</label>
-          <input type="text" id="email" name="email" placeholder="">
-        </div>
-      </div>
-  
-      <div class="col">
-        <div class="form-group">
-          <label for="phone">VIN номер</label>
-          <input type="text" id="phone" name="phone" placeholder="">
-        </div>
-      </div>
-      
-      <div class="col">
-        <div class="form-group">
-          <label for="sname">ФИО владельца</label>
-          <input type="text" id="sname" name="surname" placeholder="">
-        </div>
-      </div>
+<h1>t3rixis car form</h1>
+<form action="" enctype="application/x-www-form-urlencoded" method="post">
+<fieldset class = "dekstop"><legend>Контактная информация</legend>
+<p><label>ФИО: <input type="text" placeholder=" Кокоткин Роман Ианович" /></p>
+  <p><label>Номер паспорта: <input type="email" placeholder=" МР 2143***" /></label></p>
+<p><label>Телефон: <input type="tel" placeholder=" +375 ** *** ** **"/></label></p>
+</fieldset>
+<fieldset class = "mobile"> <legend>Контактная информация</legend>
+  <p><input  type="text" placeholder=" Имя" /></p>
+  <p><input  type="tel" placeholder=" Телефон" /></p>
+  <p><input  type="text" placeholder=" Марка машины" /></p>
+  <p><input  type="email" placeholder=" Модель" /></p>
 
-      <div class="col">
-        <div class="form-group">
-          <label for="ame">Номер владельца</label>
-          <input type="text" id="ame" name="ame" placeholder="">
-        </div>
-      </div>
-    
-  
-      <div class="col">
-        <input type="submit" value="Submit">
-      </div>
-    </div>
-  </div>
+  </fieldset>
+<fieldset><legend>Параметры</legend>
+  <p><label>Марка машины: <input type="text" placeholder=" nissan" /></label></p>
+  <p><label>Модель: <input type="email" placeholder=" skyline r34" /></label></p>
+  <p><label>Объём двигателя: <input type="email" placeholder=" 2.0" /></label></p>
+  <p><label>Привод: <input type="email" placeholder=" Задний" /></label></p>
+  <p><label>Пробег: <input type="email" placeholder=" 10 000 км" /></label></p>
+  <p><label>Тип кузова: <input type="email" placeholder=" Купе" /></label></p>
+  <p><label>Цвет кузова: <input type="email" placeholder=" Черный" /></label></p>
+  <p><label>VIN-номер: <input type="email" placeholder=" Код из 17 символов" /></label></p>
+</fieldset>
+<fieldset><legend>Комплектация</legend>
+<p><label> <input name="topping" type="checkbox" value="bacon" /> ABS</label></p>
+<p><label> <input name="topping" type="checkbox" value="cheese" /> ESP</label></p>
+<p><label> <input name="topping" type="checkbox" value="onion" /> Сигнализация</label></p>
+<p><label> <input name="topping" type="checkbox" value="mushroom" /> Легкосплавные диски</label></p>
+<p><label> <input name="topping" type="checkbox" value="mushroom" /> Люк</label></p>
+<p><label> <input name="topping" type="checkbox" value="mushroom" /> AUX или iPod</label></p>
+<p><label> <input name="topping" type="checkbox" value="mushroom" /> Автозапуск двигателя</label></p>
+<p><label> <input name="topping" type="checkbox" value="mushroom" /> Передние электро-стеклоподъёмники</label></p>
+<p><label> <input name="topping" type="checkbox" value="mushroom" /> Задние электро-стеклоподъёмники</label></p>
+</fieldset>
+<p class="butt"><button> Отправить</button></p>
+</form>
+<form>
 
 </body>
 </html>
