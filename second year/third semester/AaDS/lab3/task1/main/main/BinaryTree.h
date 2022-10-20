@@ -16,6 +16,7 @@ private:
 	int FindItemPrivate(node* Ptr, int key, int depth);
 	int heightOfNodePrivate(int key, int height);
 
+	void SpecialPrintPrivate(node* Ptr, int level, int side);
 	void RemoveMatch(node* parent, node* match, bool left, int removeType);
 	void RemoveRootMatch(int removeType);
 	void FindMiddleNodePrivate(node* Ptr);
@@ -37,6 +38,7 @@ public:
 	int RemoveNode(int key, int removeType);
 	int findSmallestOrHighest(int removeType);
 
+	void SpecialPrint();
 	void FindMiddleNode(int totalNumberOfLeaf);
 	void FindItem(int key);
 	void FindCountOfChildren();

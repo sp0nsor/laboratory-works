@@ -73,6 +73,25 @@ void BST::PrintInOrderPrivate(node* Ptr) {
 	}
 }
 
+void BST::PrintPreOrder() {
+	PrintPreOderPrivate(root);
+}
+
+void BST::PrintPreOderPrivate(node* Ptr) {
+	if (root != nullptr) {
+		wcout << Ptr->key << " ";
+		if (Ptr->left != nullptr) {
+			PrintPreOderPrivate(Ptr->left);
+		}
+		if (Ptr->right != nullptr) {
+			PrintPreOderPrivate(Ptr->right);
+		}
+	}
+	else {
+		wcout << "tree is empty.\n";
+	}
+}
+
 BST::node* BST::ReturnNode(int key) {
 	return ReturnNodePrivate(key, root);
 }
