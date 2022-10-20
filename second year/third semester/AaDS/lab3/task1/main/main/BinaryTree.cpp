@@ -186,6 +186,55 @@ int BST::RemoveNodePrivate(int key, node* parent, int removeType) {
 		wcout << "the tree is empty.\n";
 }
 
+void BST::RemoveMatch(node* parent, node* match, bool left, int removeType) {
+	if (root != nullptr) {
+		node* delPtr;
+		int matchKey = match->key;
+		int smallestInRightSubTree, highestInLeftSubTree;
+
+		if (match->left == nullptr && match->right == nullptr) {
+			delPtr = match;
+			if (left == true) parent->left = nullptr;
+			else parent->right = nullptr;
+			delete delPtr;
+			wcout << "The node containing key " << matchKey << " was remove.\n";
+		}
+
+		else if (match->left == nullptr && match->right != nullptr) {
+			if (left == true) parent->left = match->right;
+			else parent->right = match->right;
+			match->right = nullptr;
+			delPtr = match;
+			delete delPtr;
+			wcout << "The node containing key " << matchKey << " was remove.\n";
+		}
+
+		else if (match->right == nullptr && match->left != nullptr) {
+			if (left == true) parent->left = match->left;
+			else parent->right = match->left;
+			match->left = nullptr;
+			delPtr = match;
+			delete delPtr;
+			wcout << "The node containing key " << matchKey << " was remove.\n";
+		}
+
+		else {
+			if (removeType == 1) {
+				highestInLeftSubTree = findHighestPrivate(match->left);
+				RemoveNodePrivate(highestInLeftSubTree, match, 1);
+				match->key = highestInLeftSubTree;
+			}
+			else {
+				smallestInRightSubTree = findSmallestPrivate(match->right);
+				RemoveNodePrivate(smallestInRightSubTree, match, 2);
+				match->key = smallestInRightSubTree;
+			}
+
+		}
+	}
+	else wcout << "Can't remove match. The Tree is empty.\n";
+}
+
 void BST:: RemoveRootMatch(int removeType) {
 	if (root != nullptr) {
 		node* delPtr = root;
@@ -241,4 +290,126 @@ void BST::FindItem(int key) {
 	}
 	else wcout << "The key " << key << " was not found in the tree.\n";
 	
+}
+int BST::FindItemPrivate(node* Ptr, int key, int depth) {
+	if (root != nullptr) {
+		if (Ptr->key == key) {
+			return key;
+		}
+		else {
+			if (key < Ptr->key) {
+				if (Ptr->left != nullptr) {
+					FindItemPrivate(Ptr->left, key, depth + 1);
+				}
+				else {
+					return -1000;
+				}
+			}
+			else {
+				if (Ptr->right != nullptr) {
+					FindItemPrivate(Ptr->right, key, depth + 1);
+				}
+				else {
+					return -1000;
+				}
+			}
+		}
+	}
+	else {
+		wcout << "the tree is empty.\n";
+		return -1000;
+	}
+}
+
+int BST::heightOfNode(int key) {
+	l = 0, r = 0;
+	return heightOfNodePrivate(key, 0);
+}
+
+int BST::heightOfNodePrivate(int key, int height) {
+	node* Ptr = ReturnNode(key);
+
+	if (Ptr != nullptr) {
+		if (Ptr->left != nullptr) {
+			l = height + 1;
+			heightOfNodePrivate(Ptr->left->key, height + 1);
+		}
+		if (Ptr->right != nullptr) {
+			r = height + 1;
+			heightOfNodePrivate(Ptr->right->key, height + 1);
+		}
+		return max(l, r);
+	}
+	else {
+		return -1000;
+	}
+}
+
+BST::~BST() {
+	RemoveSubTree(root);
+}
+
+void BST::RemoveSubTree(node* Ptr) {
+	if (Ptr == nullptr) {
+		return;
+	}
+	RemoveSubTree(Ptr->left);
+	RemoveSubTree(Ptr->right);
+	delete Ptr;
+}
+
+int totalNumber, counter = 0;
+void BST::FindMiddleNode(int totalNumberOfLeaf) {
+	totalNumber = totalNumberOfLeaf;
+	FindMiddleNodePrivate(root);
+}
+
+void BST::FindMiddleNodePrivate(node* Ptr) {
+	if (root != nullptr) {
+		if (counter == totalNumber / 2 + 1) {
+			wcout << Ptr->key << endl;
+			RemoveNode(Ptr->key, 2);
+		}
+		else {
+			if (Ptr->left != nullptr || Ptr->right != nullptr) {
+				if (Ptr->left != nullptr) {
+					FindMiddleNodePrivate(Ptr->left);
+				}
+				counter++;
+				if (Ptr->right != nullptr) {
+					FindMiddleNodePrivate(Ptr->right);
+				}
+			}
+			else {
+				counter++;
+				if (counter == totalNumber / 2 + 1) {
+					wcout << Ptr->key << endl;
+					RemoveNode(Ptr->key, 1);
+				}
+			}
+		}
+	}
+	else {
+		wcout << "tree is empty.\n";
+	}
+}
+
+void BST::FindCountOfChildren() {
+	if (root != nullptr)
+		FindCountOfChildrenPrivate(root);
+	else
+		wcout << "The Tree is empty.\n";
+}
+int BST::FindCountOfChildrenPrivate(node* Ptr) {
+	int leftChildren = 0, rightChildren = 0;
+	if (Ptr->left != nullptr)
+		leftChildren = FindCountOfChildrenPrivate(Ptr->left) + 1;
+	if (Ptr->right != nullptr)
+		rightChildren = FindCountOfChildrenPrivate(Ptr->right) + 1;
+	if (leftChildren > rightChildren) {
+		wcout << "Node " << Ptr->key << "\nl=" << leftChildren << "\nr=" << rightChildren << "\n";
+		RemoveNode(Ptr->key, 2);
+	}
+
+	return leftChildren + rightChildren;
 }

@@ -10,12 +10,11 @@ private:
 	node* root;
 	int AddLeaftPrivate(int key, node* Ptr);
 	int FindCountOfChildrenPrivate(node* Ptr);
-	int FindCountOfChildrenPrivate(node* Ptr);
 	int findSmallestPrivate(node* Ptr);
 	int RemoveNodePrivate(int key, node* Parent, int removeType);
 	int findHighestPrivate(node* Ptr);
 	int FindItemPrivate(node* Ptr, int key, int depth);
-	int RemoveNodePrivate(int key, node* Parent, int removeType);
+	int heightOfNodePrivate(int key, int height);
 
 	void RemoveMatch(node* parent, node* match, bool left, int removeType);
 	void RemoveRootMatch(int removeType);
@@ -23,8 +22,6 @@ private:
 	void RemoveSubTree(node* Ptr);
 	void PrintPreOderPrivate(node* Ptr);
 	void PrintInOrderPrivate(node* root);
-	void PrintInOrderPrivete(node* Ptr);
-	void PrintInOrder();
 
 	node* GreatLeaf(int key, node* Parent);
 	node* ReturnNode(int key);
@@ -34,6 +31,7 @@ public:
 	BST();
 	~BST();
 
+	int heightOfNode(int key);
 	int ReturnRootKey();
 	int AddLeaf(int key);
 	int RemoveNode(int key, int removeType);
