@@ -1,2 +1,2 @@
 import module
-module.Print(15,20,25)
+module.init(168, 105, 18,48, 36,48)

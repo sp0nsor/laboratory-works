@@ -1,35 +1,35 @@
-def NOD(*args):
-    for x in range(len(args) - 2):
-         a=args[x]
-         b=args[x+1]
-         while a != 0 and b != 0:
-             if a > b:
-                 print(a)
-                 a %= b
-             else:
-                 print(b)
-                 b %= a
-             if a > 0:
-                b=args[x+2]
-                d=a+b
-                while d != 0 and a != 0:
-                    if d > a:
-                        d %= a
-                        print(d)
-                    else:
-                        a %= d
-                        print(a)
-                return d+a
-             else:
-                a=args[x+2]
-                d=a+b
-                while d != 0 and b != 0:
-                    if d > b:
-                        d %= b
-                        print(d)
-                    else:
-                        b %= d
-                        print(b)
-                return d+b
-def Print(a,b,c):
-    print("result: " + str(NOD(a,b,c)))
+def NOD(num1, num2):
+    while num1 != 0 and num2 != 0:
+        if num1 >= num2:
+            num1 %= num2
+        else:
+            num2 %= num1
+    out_blue("__________")
+    print(num1 or num2)
+    out_blue("__________")
+
+def simpleDividers(n):
+   answer = []
+   d = 2
+   while d * d <= n:
+       if n % d == 0:
+           answer.append(d)
+           n //= d
+       else:
+           d += 1
+   if n > 1:
+       answer.append(n)
+   print (answer)
+
+def out_blue(text):
+    print("\033[31m\033[43m".format(text))
+def init(*args):
+    i = 0
+    lens = len(args)
+    while(i+2 <= len(args)):
+        num1 = args[i]
+        num2 = args[i + 1]
+        NOD(num1, num2)
+        simpleDividers(num1)
+        simpleDividers(num2)
+        i += 2
