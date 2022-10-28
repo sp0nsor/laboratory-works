@@ -1,5 +1,5 @@
 function time_output(array){
-    for (let i; i < array.length; i++){
+    for (let i = 0; i < array.length; i++){
         setTimeout(function(){
             console.log(i);
         }, i * 3000);
