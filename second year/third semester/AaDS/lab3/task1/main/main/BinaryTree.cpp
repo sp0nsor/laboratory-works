@@ -40,7 +40,7 @@ int BST::AddLeaftPrivate(int key, node* Ptr ){
 	}
 	else if (key > Ptr->key) {
 		if (Ptr->right != nullptr) {
-			isCorrentItem = AddLeaftPrivate(key, Ptr->left);
+			isCorrentItem = AddLeaftPrivate(key, Ptr->right);
 		}
 		else {
 			Ptr->right = GreatLeaf(key, Ptr);
@@ -431,4 +431,23 @@ int BST::FindCountOfChildrenPrivate(node* Ptr) {
 	}
 
 	return leftChildren + rightChildren;
+}
+
+void BST::PrintPostOrder() {
+	PrintPostOrderPrivate(root);
+}
+
+void BST::PrintPostOrderPrivate(node* Ptr) {
+	if (root != nullptr) {
+		if (Ptr->left != nullptr) {
+			PrintPostOrderPrivate(Ptr->left);
+		}
+		if (Ptr->right != nullptr) {
+			PrintPostOrderPrivate(Ptr->right);
+		}
+		wcout << Ptr->key << " ";
+	}
+	else {
+		wcout << " tree is empty.\n";
+	}
 }

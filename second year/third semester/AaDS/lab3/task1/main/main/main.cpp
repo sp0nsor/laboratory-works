@@ -65,7 +65,7 @@ int main() {
 				NewTree.PrintPreOrder();
 				wcout << endl;
 				wcout << "Post order output:  ";
-				//NewTree.PrintPostOrder();
+				NewTree.PrintPostOrder();
 				wcout << endl;
 				wcout << "Tree output:\n";
 				NewTree.SpecialPrint();
