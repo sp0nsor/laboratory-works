@@ -1,47 +1,68 @@
 <!DOCTYPE html>
-<html lang = "en" dir = "ltr">
-    <head>
-        <meta charset="uft - 8">
-        <title> Simple Calculator</title>
-        <link rel = "stylesheet" href = "style.css">
-    </head>
-    <body>
-        <table class = "calculator">
-            <tr>
-                <td colspan="3"> <input class = "display-box" type = "text" id = "result disabled "/></td>
+<html lang="en">
 
-                <td> <input type="button" value="C" onclick="clearScreen()" id="btn" /> </td>
-            </tr>
-            <tr>
-                <td><input type="button" value="OFF" onclick="display('OFF')" id="btn"/></td>
-                <td><input type="button" value="√" onclick="display('√')"/></td>
-                <td><input type="button" value="%" onclick="display('%')"/></td>
-                <td><input type="button" value="←" onclick="display('←')"/></td>
-            </tr>
-            <tr>
-                <td> <input type = "button" value="1" onclick="display('1')"/></td>
-                <td> <input type = "button" value="2" onclick="display('2')"/></td>
-                <td> <input type = "button" value="3" onclick="display('3')"/></td>
-                <td> <input type = "button" value="/" onclick="display('/')"/></td>
-            </tr>
-            <tr>
-                <td><input type="button" value="4" onclick="display('4')"/></td>
-                <td><input type="button" value="5" onclick="display('5')"/></td>
-                <td><input type="button" value="6" onclick="display('6')"/></td>
-                <td><input type="button" value="-" onclick="display('-')"/></td>
-            </tr>
-            <tr>
-                <td><input type="button" value="7" onclick="display('7')"/></td>
-                <td><input type="button" value="8" onclick="display('8')"/></td>
-                <td><input type="button" value="9" onclick="display('9')"/></td>
-                <td><input type="button" value="+" onclick="display('+')"/></td>
-            </tr>
-            <tr>
-                <td><input type="button" value="." onclick="display('.')"/></td>
-                <td><input type="button" value="0" onclick="dispaly('0')"/></td>
-                <td><input type="button" value="=" onclick="display('=')"/></td>
-                <td> <input type="button" value="*" onclick="display('*')"/></td>
-            </tr>
-        </table>
-    </body>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Calculator</title>
+  <meta name="description" content="Simple Calculator With Dark Mode." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="dark.css" id="theme" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <div class="header-container">
+        <h1 id="toast">Calculator</h1>
+        <div class="top-buttons">
+          <a href="https://github.com/zxcodes/JavaScript-Calculator">
+          </a>
+          <button type="button" onclick="changeTheme()" class="theme-button">
+          </button>
+        </div>
+      </div>
+      <div class="first-row">
+        <input type="text" name="result" id="result" placeholder="Result" readonly />
+        <input type="button" value="C" onclick="result.value=''" id="clear-button" />
+      </div>
+      <div class="second-row">
+        <input type="button" value="1" onclick="liveScreen(1)" />
+        <input type="button" value="2" onclick="liveScreen(2)" />
+        <input type="button" value="3" onclick="liveScreen(3)" />
+        <input type="button" value="+" onclick="liveScreen('+')" />
+      </div>
+      <div class="third-row">
+        <input type="button" value="4" onclick=" liveScreen(4)" />
+        <input type="button" value="5" onclick=" liveScreen(5)" />
+        <input type="button" value="6" onclick=" liveScreen(6)" />
+        <input type="button" value="-" onclick="liveScreen('-')" />
+      </div>
+      <div class="fourth-row">
+        <input type="button" value="7" onclick="liveScreen(7)" />
+        <input type="button" value="8" onclick="liveScreen(8)" />
+        <input type="button" value="9" onclick=" liveScreen(9)" />
+        <input type="button" value="x" onclick="liveScreen('*')" />
+      </div>
+      <div class="fifth-row">
+        <input type="button" value="/" onclick="liveScreen('/')" />
+        <input type="button" value="0" onclick="liveScreen(0)" />
+        <input type="button" value="." onclick="liveScreen('.')" />
+        <input type="button" value="=" onclick="calculate(result.value)" />
+      </div>
+      <div class = "sixth-row">
+        <input type="button" value="√" onclick="calculate(Math.sqrt(result.value))" />
+        <input type="button" value="%" onclick="liveScreen('%')" />
+        <input type="button" value="M+" onclick="calculate(Math.abs(result.value))" />
+        <input type="button" value="M-" onclick="calculate(result.value*-1)" />
+      </div>
+    </div>
+  </div>
+  <script src="index.js">
+  </script>
+</body>
+
 </html>
