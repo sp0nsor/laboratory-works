@@ -7,7 +7,7 @@ def number_of_dividers(x):
 
 def main ():
     with open('data.txt', 'w') as f:
-        for i in range(1, 100):
+        for i in range(1, 1000001):
             f.write(str(i) + " : " + str(number_of_dividers(i)) + '\n')
     return
 
