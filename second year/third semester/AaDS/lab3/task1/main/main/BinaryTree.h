@@ -22,7 +22,8 @@ private:
 	void FindMiddleNodePrivate(node* Ptr);
 	void RemoveSubTree(node* Ptr);
 	void PrintPreOderPrivate(node* Ptr);
-	void PrintInOrderPrivate(node* root);
+	void PrintInOrderPrivate(node* Ptr);
+	void PrintPostOrderPrivate(node* Ptr);
 
 	node* GreatLeaf(int key, node* Parent);
 	node* ReturnNode(int key);
@@ -44,6 +45,7 @@ public:
 	void FindCountOfChildren();
 	void PrintInOrder();
 	void PrintPreOrder();
+	void PrintPostOrder();
 	void PrintChildren(int key);
 
 
