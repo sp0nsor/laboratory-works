@@ -88,12 +88,3 @@
     text-decoration: none;
     color: #fff;
   }
-  
-  #github-icon {
-    margin-right: 10px;
-  }
-  
-  .theme-button {
-    all: unset;
-    cursor: pointer;
-  }
