@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" ng-app="durak">
+    <head>
+        <meta charset="utf-8">
+        <title>Дурак</title>
+        <link rel="stylesheet" href="styles/common.css" />
+        <script src="scripts/angular.min.js"></script>
+        <script src="scripts/script.js"></script>
+    </head>
+
+    <body ng-controller="durakCtrl">
+
+        <div class="hand opponentHand">
+            <div class="card" ng-repeat="card in data.opponentHand">
+                <img ng-src="images/back.png">
+            </div>
+        </div>
+
+        <div class="opponentButtons">
+            <span class="activeButton" ng-show="data.opponentTakes">Ну беру</span>
+        </div>
+
+        <div class="hand playerHand">
+            <div class="card" id="{{card}}" ng-repeat="card in data.playerHand" ng-click="clickCard($event)">
+                <img ng-src="images/cards/{{card}}.png">
+            </div>
+        </div>
+
+        <div class="playerButtons">
+            <span class="activeButton" ng-show="data.opponentTakes" ng-click="clickLetTake($event)">Ну бери</span>
+            <span class="activeButton" ng-show="data.isPlayerTurn && data.attack.length && data.beaten" ng-click="endTurn($event)">Бито</span>
+            <span class="activeButton" ng-show="!data.isPlayerTurn && data.attack.length && !data.beaten" ng-click="take($event)">Ну беру</span>
+        </div>
+
+        <div class="trump" ng-show="data.deck.length">
+            <img ng-src="images/cards/{{data.trump}}.png">
+        </div>
+
+        <div class="deck" ng-show="data.deck.length > 1">
+            <img ng-src="images/back.png">
+            <br>
+            {{data.deck.length}}
+        </div>
+
+        <div class="table">
+            <div class="attack">
+                <div class="card" ng-repeat="card in data.attack">
+                    <img ng-src="images/cards/{{card}}.png">
+                </div>
+            </div>
+            <div class="defend">
+                <div class="card" ng-repeat="card in data.defend">
+                    <img ng-src="images/cards/{{card}}.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="result" ng-show="!data.playerHand.length || !data.opponentHand.length">
+            <span ng-if="!data.playerHand.length && !data.opponentHand.length && data.beaten">Ничья</span>
+            <span ng-if="!data.playerHand.length">Красава!</span>
+            <span ng-if="!data.opponentHand.length">Что ж ты, фраер...</span>
+            <br><br><br>
+            <span class="activeButton" ng-click="playAgain()">Давай ещё</span>
+        </div>
+
+    </body>
+</html>
