@@ -1,0 +1,30 @@
+/////// -> All good
+9
+A->E
+E->E+T
+E->E-T
+E->T
+T->T*F
+T->T/F
+T->F
+F->(E)
+F->n
+A E T F #
+n + - * / ( ) i #
+(n+n)*n-n/n
+
+
+////// -> Error!
+9
+A->E
+E->E+T
+E->E-T
+E->T
+T->T*F
+T->T/F
+T->F
+F->(E)
+F->n
+A E T F #
+n + - * / ( ) i #
+(n+i)*i+n/i
