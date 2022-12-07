@@ -178,31 +178,27 @@ int BST::RemoveNodePrivate(int key, node* parent, int removeType) {
 		}
 		else {
 			if (key < parent->key && parent->left != nullptr) {
-				if (parent->left->key == key) {
+				if (parent->left->key == key)
 					RemoveMatch(parent, parent->left, true, removeType);
-				}
-				else {
+				else
 					RemoveNodePrivate(key, parent->left, removeType);
-				}
 				return 1;
 			}
 			else if (key > parent->key && parent->right != nullptr) {
-				if (parent->right->key == key) {
-					RemoveMatch(parent, parent->left, false, removeType);
-				}
-				else {
-					RemoveNodePrivate(key, parent->left, removeType);
-				}
+				if (parent->right->key == key)
+					RemoveMatch(parent, parent->right, false, removeType);
+				else
+					RemoveNodePrivate(key, parent->right, removeType);
 				return 1;
 			}
 			else {
-				wcout << "the key " << key << " was not found int the tree.\n";
+				wcout << "The key " << key << " was not found in the Tree.\n";
 				return 0;
 			}
 		}
 	}
 	else
-		wcout << "the tree is empty.\n";
+		wcout << "The Tree is empty.\n";;
 }
 
 void BST::RemoveMatch(node* parent, node* match, bool left, int removeType) {
@@ -300,12 +296,13 @@ void BST:: RemoveRootMatch(int removeType) {
 
 int l(0); int r(0);
 void BST::FindItem(int key) {
-	int depth = FindItemPrivate(root, key, 0);
+	int depth = 0;
+	depth = FindItemPrivate(root, key, 0);
 	if (depth >= 0) {
 		wcout << "depth of search item: " << depth;
 		int height = heightOfNode(key);
 		wcout << "\nheight of rearch item: " << height;
-		wcout << "\nleve of search item: " << height - depth;
+		wcout << "\nlevel of search item: " << height - depth;
 	}
 	else wcout << "The key " << key << " was not found in the tree.\n";
 	
@@ -317,25 +314,20 @@ int BST::FindItemPrivate(node* Ptr, int key, int depth) {
 		}
 		else {
 			if (key < Ptr->key) {
-				if (Ptr->left != nullptr) {
+				if (Ptr->left != nullptr)
 					FindItemPrivate(Ptr->left, key, depth + 1);
-				}
-				else {
+				else
 					return -1000;
-				}
 			}
 			else {
-				if (Ptr->right != nullptr) {
-					FindItemPrivate(Ptr->right, key, depth + 1);
-				}
-				else {
+				if (Ptr->right != nullptr) FindItemPrivate(Ptr->right, key, depth + 1);
+				else
 					return -1000;
-				}
 			}
 		}
 	}
 	else {
-		wcout << "the tree is empty.\n";
+		wcout << "The Tree is empty.\n";
 		return -1000;
 	}
 }
@@ -360,7 +352,7 @@ int BST::heightOfNodePrivate(int key, int height) {
 		return max(l, r);
 	}
 	else {
-		return -1000;
+		return -1;
 	}
 }
 
@@ -450,4 +442,42 @@ void BST::PrintPostOrderPrivate(node* Ptr) {
 	else {
 		wcout << " tree is empty.\n";
 	}
+
+}
+
+vector<int> vect(0);
+
+
+void BST::Task() {
+
+	if (root != nullptr) {
+		FindCountOfChildrenPrivate(root);
+		sort(vect.begin(), vect.end());
+		if (vect.size() == 0)
+			wcout << "Middle node wasn't found. Vector is empty";
+		else if (vect.size() % 2 == 0)
+			wcout << "Middle node doesn't exist.";
+		else {
+			int key = vect[vect.size() / 2];
+			wcout << "Middle node is: " << key << endl;
+			RemoveNode(key, 2);
+		}
+	}
+	else
+		wcout << "The Tree is empty.\n";
+}
+int BST::TaskPrivate(node* Ptr) {
+
+	int leftChildren = 0, rightChildren = 0;
+	if (Ptr->left != nullptr)
+		leftChildren = FindCountOfChildrenPrivate(Ptr->left) + 1;
+	if (Ptr->right != nullptr)
+		rightChildren = FindCountOfChildrenPrivate(Ptr->right) + 1;
+	if (leftChildren != rightChildren) {
+		wcout << "Node " << Ptr->key << "	left=" << leftChildren << "    right=" << rightChildren << "\n";
+		vect.push_back(Ptr->key);
+	}
+
+	return leftChildren + rightChildren;
+
 }
