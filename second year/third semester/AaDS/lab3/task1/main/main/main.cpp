@@ -3,6 +3,7 @@
 #include <io.h>
 #include <fcntl.h>
 #include <Windows.h>
+#include <ctime>;
 #include "BinaryTree.h"
 using namespace std;
 
@@ -19,6 +20,7 @@ void menu() {
 }
 
 int main() {
+	srand(time(NULL));
 	_setmode(_fileno(stdout), _O_U16TEXT);
 	BST NewTree;
 	bool work = true;
@@ -103,16 +105,7 @@ int main() {
 			NewTree.FindItem(temp);
 			break;
 		case 7:
-			if (totalNumberOfLeaf % 2 == 0)
-				wcout << "Middle node does not exist.";
-			else if (totalNumberOfLeaf == 1) {
-				wcout << "Middle node is root: " << NewTree.ReturnRootKey() << " was remove.";
-				NewTree.RemoveNode(NewTree.ReturnRootKey(), 1);
-			}
-			else if (totalNumberOfLeaf % 2 == 1) {
-				wcout << "Middle node: ";
-				NewTree.FindMiddleNode(totalNumberOfLeaf);
-			}
+			NewTree.Task();
 			break;
 		case 0:
 			wcout << "The program completed\n";

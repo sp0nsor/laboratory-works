@@ -8,6 +8,7 @@ private:
 		node* parent;
 	};
 	node* root;
+	int findDepth(node* Ptr, int key);
 	int AddLeaftPrivate(int key, node* Ptr);
 	int FindCountOfChildrenPrivate(node* Ptr);
 	int findSmallestPrivate(node* Ptr);
@@ -24,6 +25,7 @@ private:
 	void PrintPreOderPrivate(node* Ptr);
 	void PrintInOrderPrivate(node* Ptr);
 	void PrintPostOrderPrivate(node* Ptr);
+	int TaskPrivate(node* Ptr);
 
 	node* GreatLeaf(int key, node* Parent);
 	node* ReturnNode(int key);
@@ -47,6 +49,6 @@ public:
 	void PrintPreOrder();
 	void PrintPostOrder();
 	void PrintChildren(int key);
-
+	void Task();
 
 };

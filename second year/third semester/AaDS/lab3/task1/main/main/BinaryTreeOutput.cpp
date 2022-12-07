@@ -31,7 +31,7 @@ void BST::SpecialPrint() {
 
 int rec[100] = { 0 };
 int key = 0;
-void BST::SpecialPrintPrivate(node* Ptr, int depth, int side) {//side-L-1 R1 or 0
+void BST::SpecialPrintPrivate(node* Ptr, int depth, int side) {
     int i;
     if (Ptr == nullptr) {
         if (side == 0)
@@ -73,23 +73,21 @@ void BST::SpecialPrintPrivate(node* Ptr, int depth, int side) {//side-L-1 R1 or 
             wprintf(L"%s    ", rec[i] ? L"\u2502" : L"    ");
         }
     }
-    //Если это корень
     if (root->key == Ptr->key) {
         red();
         wcout << L"Root:";
     }
-    else if (key == 0) {//если это правое поддерево
+    else if (key == 0) {
         lime();
         wcout << L"R:";
     }
-    else { //если это левое поддерево
+    else {
         purple();
         wcout << L"L:";
     }
     white();
     wcout << Ptr->key << "\n";
     key = 0;
-    //Если у узла есть хотя бы один потомок
     if (Ptr->left != nullptr || Ptr->right != nullptr) {
         rec[depth] = 1;
         SpecialPrintPrivate(Ptr->left, depth + 1, -1);
