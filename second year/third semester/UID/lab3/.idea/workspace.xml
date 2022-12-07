@@ -4,7 +4,8 @@
     <list default="true" id="4bd29edf-d335-47c4-af86-7eaf411a7648" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../../AaDS/lab3/task1/main/main/BinaryTree.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../AaDS/lab3/task1/main/main/BinaryTree.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../AaDS/lab3/task1/main/main/BinaryTree.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../AaDS/lab3/task1/main/main/BinaryTree.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AaDS/lab4/task2/main/main/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../AaDS/lab4/task2/main/main/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../lab4/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +41,7 @@
       <workItem from="1667756337196" duration="28000" />
       <workItem from="1668209637548" duration="8000" />
       <workItem from="1669062695239" duration="3000" />
+      <workItem from="1669466229523" duration="3000" />
     </task>
     <servers />
   </component>
