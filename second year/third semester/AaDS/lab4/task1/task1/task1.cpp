@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <cstring>
+#include <ctime>
 #include <cstdlib>
 using namespace std;
 
@@ -182,10 +183,12 @@ public:
 
 int main()
 {
+    srand(time(NULL));
     cout << "Dary Heap Test\n\n";
     cout << "Enter size and D of D-ary Heap: ";
-    int size, num, choice, val, amount;
-    cin >> size >> num;
+    int size, choice, val, amount;
+    cin >> size;
+    const int num = 3;
     DaryHeap th(size, num);
     char ch;
     bool flag = true;
@@ -199,7 +202,7 @@ int main()
         cout << "5. Check full" << endl;
         cout << "6. Check empty" << endl;
         cout << "7. Clear" << endl;
-        cout << "8. Terminate" << endl;
+        cout << "8. Get an item" << endl;
 
         cout << "Enter your Choice: ";
         cin >> choice;
@@ -241,8 +244,7 @@ int main()
             cout << "Heap Cleared\n";
             break;
         case 8:
-            cout << "Terminate programm" << endl;
-            flag = false;
+            cout << "Min iteam: " << th.findMin() << endl;
             break;
         default:
             cout << "Wrong Entry \n ";
