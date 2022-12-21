@@ -215,5 +215,47 @@ durakApp.controller("durakCtrl", function($scope) {
 
     $scope.data = model;
     if (!$scope.data.isPlayerTurn) setTimeout($scope.opponentAttack, 500);
-
 });
+
+document.addEventListener('keydown', (event) => {
+    switch(event.key) {
+        case 'ArrowRight': {
+            const activeElement = document.activeElement;
+            if (!activeElement.classList.contains('card')) {
+                document.querySelector('.playerHand').querySelector('.card').focus()
+            }
+            const sibling = activeElement.nextElementSibling;
+            if (!sibling) return;
+            sibling.focus();
+            break;
+        }
+        case 'ArrowLeft': {
+            const activeElement = document.activeElement;
+            if (!activeElement.classList.contains('card')) {
+                document.querySelector('.playerHand').querySelector('.card').focus()
+            }
+            const sibling = activeElement.previousElementSibling;
+            if (!sibling) return;
+            sibling.focus()
+            break;
+        }
+        case 'ArrowUp': {
+            const activeElement = document.activeElement;
+            if (!activeElement.classList.contains('card')) {
+                document.querySelector('.playerHand').querySelector('.card').focus()
+            }
+            const activeButton = document.querySelector('.playerButtons').querySelector('.activeButton:not(.ng-hide)');
+            if (!activeButton) return;
+            console.log(activeButton)
+            activeButton.focus();
+            break;
+        }
+        case 'ArrowDown': {
+            const activeElement = document.activeElement;
+            if (!activeElement.classList.contains('card')) {
+                document.querySelector('.playerHand').querySelector('.card').focus()
+            }
+            break;
+        }
+    }
+})

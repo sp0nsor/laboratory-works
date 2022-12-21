@@ -73,7 +73,7 @@ let flag = false;
 document.addEventListener("keydown", function(event) {
   i = 0;
 
-  if (event.altKey && (event.key === 'z' || event.key === 'Z'))
+  if (event.altKey && (event.key === 'a' || event.key === 'A'))
   { 
         if (flag===false){
         var div = redact[redact.length-1].parentElement;
