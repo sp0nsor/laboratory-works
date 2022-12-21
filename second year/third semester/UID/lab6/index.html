@@ -17,19 +17,19 @@
         </div>
 
         <div class="opponentButtons">
-            <span class="activeButton" ng-show="data.opponentTakes">Ну беру</span>
+            <button class="activeButton" ng-show="data.opponentTakes">Ну беру</button>
         </div>
 
         <div class="hand playerHand">
-            <div class="card" id="{{card}}" ng-repeat="card in data.playerHand" ng-click="clickCard($event)">
+            <button class="card" id="{{card}}" ng-repeat="card in data.playerHand" ng-click="clickCard($event)">
                 <img ng-src="images/cards/{{card}}.png">
-            </div>
+            </button>
         </div>
 
         <div class="playerButtons">
-            <span class="activeButton" ng-show="data.opponentTakes" ng-click="clickLetTake($event)">Ну бери</span>
-            <span class="activeButton" ng-show="data.isPlayerTurn && data.attack.length && data.beaten" ng-click="endTurn($event)">Бито</span>
-            <span class="activeButton" ng-show="!data.isPlayerTurn && data.attack.length && !data.beaten" ng-click="take($event)">Ну беру</span>
+            <button class="activeButton" ng-show="data.opponentTakes" ng-click="clickLetTake($event)">Ну бери</button>
+            <button class="activeButton" ng-show="data.isPlayerTurn && data.attack.length && data.beaten" ng-click="endTurn($event)">Бито</button>
+            <button class="activeButton" ng-show="!data.isPlayerTurn && data.attack.length && !data.beaten" ng-click="take($event)">Ну беру</button>
         </div>
 
         <div class="trump" ng-show="data.deck.length">
@@ -56,11 +56,11 @@
         </div>
 
         <div class="result" ng-show="!data.playerHand.length || !data.opponentHand.length">
-            <span ng-if="!data.playerHand.length && !data.opponentHand.length && data.beaten">Ничья</span>
-            <span ng-if="!data.playerHand.length">Красава!</span>
-            <span ng-if="!data.opponentHand.length">Что ж ты, фраер...</span>
+            <button ng-if="!data.playerHand.length && !data.opponentHand.length && data.beaten">Ничья</button>
+            <button ng-if="!data.playerHand.length">Красава!</button>
+            <button ng-if="!data.opponentHand.length">Что ж ты, фраер...</button>
             <br><br><br>
-            <span class="activeButton" ng-click="playAgain()">Давай ещё</span>
+            <button class="activeButton" ng-click="playAgain()">Давай ещё</button>
         </div>
 
     </body>

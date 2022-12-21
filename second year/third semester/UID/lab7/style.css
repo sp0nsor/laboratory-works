@@ -135,3 +135,10 @@ p[contentEditable] {
   box-shadow: 0 0 0 1px red;
   outline: none;
 }
+.text-ex-wrap{
+  word-wrap: break-word; /* Перенос слов */ 
+}
+.text-ex-space{
+  white-space: nowrap; /* Запрещаем перенос слов */
+}
+     
