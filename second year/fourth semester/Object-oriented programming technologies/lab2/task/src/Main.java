@@ -3,6 +3,30 @@
 // 1 -2 3 1 1 4 -1 1 ромб
 
 public class Main {
+    public static boolean boolCheckSquare(double lengthD1, double lengthD2){
+        if (lengthD1 == lengthD1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public static boolean boolCheckRhomb(double lengthD1, double lengthD2){
+        if (lengthD1 != lengthD2){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public static boolean boolCheckParallelogram(double lengthS1, double lengthS2, double lengthS3, double lengthS4){
+        if(lengthS1 == lengthS3 && lengthS2 == lengthS4 && lengthS1 != lengthS4){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     public static void main(String[] args){
 
         double x1 = Double.parseDouble(args[0]);
@@ -38,6 +62,7 @@ public class Main {
         if (lengthS1 == lengthS2 && lengthS3 == lengthS4 && lengthS1 == lengthS3){
             if (lengthD1 == lengthD2){
                 System.out.println("Данный четырёхугольник квадрат.");
+
             } else if (lengthD1 != lengthD2) {
                 System.out.println("Данный четырёхугольник ромб.");
             }
