@@ -27,6 +27,8 @@ public class Main {
         System.out.print("массив после первой сортировки: ");
         System.out.println(Arrays.toString(args));
         SortByLastCount(args, _substr);
+        System.out.print("массив после второй сортировки: ");
+        System.out.println(Arrays.toString(args));
     }
     public static int countSubstring(String _str, String _substr){
         int count = 0;
