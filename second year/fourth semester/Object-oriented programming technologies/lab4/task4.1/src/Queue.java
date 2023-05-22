@@ -1,15 +1,19 @@
-public class Queue {
+public class Queue<T> {
 
     private int front; // указатель на головной элемент
     private int rear; // указатель на хвостовой элемент
     private int capacity; // емкость очереди
-    private int[] queueArray; // массив для хранения элементов очереди
+    private T[] queueArray; // массив для хранения элементов очереди
 
     public Queue(int size) {
         capacity = size;
-        queueArray = new int[capacity];
+        queueArray = (T[]) new Object[capacity];
         front = -1;
         rear = -1;
+    }
+
+    public T getQueueArray(int i) {
+        return queueArray[i];
     }
 
     // Метод проверки очереди на пустоту
@@ -23,7 +27,7 @@ public class Queue {
     }
 
     // Метод добавления элемента в очередь
-    public void enqueue(int item) {
+    public void enqueue(T item) {
         if (isFull()) {
             System.out.println("Очередь переполнена");
         } else {
@@ -37,11 +41,11 @@ public class Queue {
     }
 
     // Метод удаления элемента из очереди
-    public int dequeue() {
-        int item;
+    public T dequeue() {
+        T item;
         if (isEmpty()) {
             System.out.println("Очередь пуста");
-            return -1;
+            return null;
         } else {
             item = queueArray[front];
             if (front >= rear) {
