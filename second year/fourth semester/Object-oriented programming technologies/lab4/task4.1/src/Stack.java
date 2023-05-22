@@ -19,6 +19,7 @@ public class Stack<T> {
         Node<T> newNode = new Node<>(data);
         newNode.next = top;
         top = newNode;
+        System.out.println("Элемент " + newNode + " добавлен в стек");
     }
 
     public T pop() {
