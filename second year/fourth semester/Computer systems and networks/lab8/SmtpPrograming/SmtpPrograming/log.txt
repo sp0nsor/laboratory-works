@@ -1,0 +1,37 @@
+Ошибка при отправке сообщения на адрес spons0rr1703@gmail.com: Bad sequence of commands. The server response was: 5.5.4 Error: send AUTH command first. 1684401068-5BZvVLEWk4Y0-GbwIPORs
+Ошибка при отправке сообщения на адрес spons0rr1703@gmail.com: Bad sequence of commands. The server response was: 5.5.4 Error: send AUTH command first. 1684401155-YCZ3avMWwmI0-cPHAkO2u
+Ошибка при отправке сообщения на адрес spons0rr1703@gmail.com: Bad sequence of commands. The server response was: 5.5.4 Error: send AUTH command first. 1684401193-BDZ3mXNDRiE0-IqgeC4ld
+Ошибка при отправке сообщения на адрес spons0rr1703@gmail.com: The operation has timed out.
+Ошибка при отправке сообщения на адрес spons0rr1703@gmail.com: Bad sequence of commands. The server response was: 5.5.4 Error: send AUTH command first. 1684402256-sUZxGiNDSSw0-pmXqoUzU
+Ошибка при отправке сообщения на адрес qqwe123qaz@yandex.by: Bad sequence of commands. The server response was: 5.5.4 Error: send AUTH command first. 1684402537-aZZu8cEWoCg0-Fxrd5soL
+Ошибка при отправке сообщения на адрес qqwe123qaz@yandex.by: The operation has timed out.
+Ошибка при отправке сообщения на адрес stud02@mail.net: Failure sending mail.
+Ошибка при отправке сообщения на адрес stud03@mail.net: Failure sending mail.
+Ошибка при отправке сообщения на адрес stud04@mail.net: Failure sending mail.
+Ошибка при отправке сообщения на адрес stud02@mail.net: Failure sending mail.
+Ошибка при отправке сообщения на адрес stud03@mail.net: Failure sending mail.
+Ошибка при отправке сообщения на адрес stud04@mail.net: Failure sending mail.
+Ошибка при отправке сообщения на адрес stud02@mail.net: Server does not support secure connections.
+Ошибка при отправке сообщения на адрес stud03@mail.net: Server does not support secure connections.
+Ошибка при отправке сообщения на адрес stud04@mail.net: Server does not support secure connections.
+Сообщение отправлено на адрес stud02@mail.net
+Сообщение отправлено на адрес stud03@mail.net
+Сообщение отправлено на адрес stud04@mail.net
+Сообщение отправлено на адрес stud02@mail.net
+Сообщение отправлено на адрес stud03@mail.net
+Сообщение отправлено на адрес stud04@mail.net
+Сообщение отправлено на адрес stud02@mail.net
+Сообщение отправлено на адрес stud03@mail.net
+Сообщение отправлено на адрес stud04@mail.net
+Ошибка при отправке сообщения на адрес stud02@mail.net: Failure sending mail.
+Ошибка при отправке сообщения на адрес stud03@mail.net: Failure sending mail.
+Ошибка при отправке сообщения на адрес stud04@mail.net: Failure sending mail.
+Сообщение отправлено на адрес stud02@mail.net
+Сообщение отправлено на адрес stud03@mail.net
+Сообщение отправлено на адрес stud04@mail.net
+Сообщение отправлено на адрес stud02@mail.net
+Сообщение отправлено на адрес stud03@mail.net
+Сообщение отправлено на адрес stud04@mail.net
+Сообщение отправлено на адрес stud02@mail.net
+Сообщение отправлено на адрес stud03@mail.net
+Сообщение отправлено на адрес stud04@mail.net
