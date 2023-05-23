@@ -20,6 +20,13 @@ function countBlackRectangles(matrix: number[][]): number {
 
         // Увеличиваем счетчик прямоугольников
         count += width * height;
+        
+        // Закрашиваем все клетки прямоугольника белым, чтобы не учитывать их в дальнейшем
+        for (let k = i; k < i + height; k++) {
+          for (let l = j; l < j + width; l++) {
+            matrix[k][l] = 0;
+          }
+        }
       }
     }
   }

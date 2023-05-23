@@ -1,26 +1,15 @@
-desktop.ini
-
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-node_modules/
-target/
-.pnp/
+/node_modules
+/.pnp
 .pnp.js
 
 # testing
 /coverage
 
 # production
-semester2/SE/**/*.exe
-Debug/
-Release/
-build/
-lib/
-storybook-static/
-build-storybook.log
-__pycache__/
-semester4/OOPaDS/**/*.class
+/build
 
 # misc
 .DS_Store
@@ -32,7 +21,3 @@ semester4/OOPaDS/**/*.class
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-#IDE
-.idea/
-.vs/
