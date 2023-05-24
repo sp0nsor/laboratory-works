@@ -4,7 +4,7 @@ function CheckPangram(words, date) {
             i++;
         }
         if (date.includes(words[i])) {
-            console.log(date[i], " - ", words[i]);
+            //console.log(date[i], " - ", words[i]);
         }
         else {
             return false;

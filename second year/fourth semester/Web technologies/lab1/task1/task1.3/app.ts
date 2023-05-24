@@ -1,33 +1,25 @@
-let value: number = 3;
-let arr1: number[] = [-1, 2, 3, -9];
-let arr2: number[] = [-1, 2, 3, -9, 11];
-let arr3: number[] = [-2, -1, 1, 2];
-let bool1: boolean;
-let bool2: boolean;
-let bool3: boolean;
+function findElements(arr1: any[], arr2: any[], arr3: any[]): any[] {
+    const result: any[] = [];
+  
+    for (let i = 0; i < arr1.length; i++) {
+      if ((arr2.indexOf(arr1[i]) > -1 || arr3.indexOf(arr1[i]) > -1) && result.indexOf(arr1[i]) === -1) {
+        result.push(arr1[i]);
+      }
+    }
+  
+    for (let i = 0; i < arr2.length; i++) {
+      if (arr3.indexOf(arr2[i]) > -1 && result.indexOf(arr2[i]) === -1) {
+        result.push(arr2[i]);
+      }
+    }
+  
+    return result;
+  }
 
-if (arr1.includes(value)){
-    bool1 = true;
-}
-else{
-    bool1 = false;
-}
-if (arr2.includes(value)){
-    bool2 = true;
-}
-else{
-    bool2 = false;
-}
+  const arr1 = [1, 2, 3, 4];
+  const arr2 = [3, 4, 5, 6];
+  const arr3 = [4, 6, 7, 8];
+  
+  const result = findElements(arr1, arr2, arr3);
 
-if (arr3.includes(value)){
-    bool3 = true;
-}
-else{
-    bool3 = false;
-}
-if(bool1 == true && bool2 == true && bool3 == false || bool1 == false && bool2 == true && bool3 == true || bool1 == true && bool2 == false && bool3 == true){
-    console.log(true);
-}
-else{
-    console.log(false);
-}
+console.log(result);

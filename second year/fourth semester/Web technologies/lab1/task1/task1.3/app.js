@@ -1,31 +1,19 @@
-var value = 3;
-var arr1 = [-1, 2, 2, -9];
-var arr2 = [-1, 2, 3, -9, 11];
-var arr3 = [-2, -1, 3, 2];
-var bool1;
-var bool2;
-var bool3;
-if (arr1.includes(value)) {
-    bool1 = true;
+function findElements(arr1, arr2, arr3) {
+    var result = [];
+    for (var i = 0; i < arr1.length; i++) {
+        if ((arr2.indexOf(arr1[i]) > -1 || arr3.indexOf(arr1[i]) > -1) && result.indexOf(arr1[i]) === -1) {
+            result.push(arr1[i]);
+        }
+    }
+    for (var i = 0; i < arr2.length; i++) {
+        if (arr3.indexOf(arr2[i]) > -1 && result.indexOf(arr2[i]) === -1) {
+            result.push(arr2[i]);
+        }
+    }
+    return result;
 }
-else {
-    bool1 = false;
-}
-if (arr2.includes(value)) {
-    bool2 = true;
-}
-else {
-    bool2 = false;
-}
-if (arr3.includes(value)) {
-    bool3 = true;
-}
-else {
-    bool3 = false;
-}
-if (bool1 == true && bool2 == true && bool3 == false || bool1 == false && bool2 == true && bool3 == true || bool1 == true && bool2 == false && bool3 == true) {
-    console.log(true);
-}
-else {
-    console.log(false);
-}
+var arr1 = [1, 2, 3, 4];
+var arr2 = [3, 4, 5, 6];
+var arr3 = [4, 6, 7, 8];
+var result = findElements(arr1, arr2, arr3);
+console.log(result);
