@@ -6,139 +6,135 @@ using System.Text;
 
 namespace SimpleChatServer
 {
-
     class Program
     {
-        static Dictionary<string, Socket> connectedClients = new Dictionary<string, Socket>();
-        static string chatTheme = "Default Theme";
+        private static Dictionary<string, Socket> clients = new Dictionary<string, Socket>();
+        private static string chatTheme = "Тема по умолчанию";
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Simple Chat Server");
+            Console.WriteLine("Простой чат-сервер");
+            Console.WriteLine("Ожидание подключений...");
 
-            int port = 8888;
+            // Создание TCP сокета и привязка его к указанному порту
+            Socket serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            serverSocket.Bind(new IPEndPoint(IPAddress.Any, 8888));
+            serverSocket.Listen(10);
 
-            TcpListener listener =  new TcpListener(IPAddress.Any, port);
-            listener.Start();
+            while (true)
+            {
+                // Принятие входящего подключения
+                Socket clientSocket = serverSocket.Accept();
 
-            Console.WriteLine("Сервер запущен и прослушивает порт {0}", port);
+                // Создание отдельного потока для обработки подключенного клиента
+                System.Threading.Thread clientThread = new System.Threading.Thread(() => HandleClient(clientSocket));
+                clientThread.Start();
+            }
+        }
+
+        static void HandleClient(Socket clientSocket)
+        {
+            string clientName = null;
+            string clientAddress = clientSocket.RemoteEndPoint.ToString();
 
             try
             {
                 while (true)
                 {
-                    Socket clientSocket = listener.AcceptSocket();
-                    ClientHendler hendler = new ClientHendler(clientSocket);
-                    hendler.Start();
+                    // Получение данных от клиента
+                    byte[] buffer = new byte[1024];
+                    int bytesRead = clientSocket.Receive(buffer);
+
+                    if (bytesRead == 0)
+                    {
+                        // Клиент отключился
+                        break;
+                    }
+
+                    string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                    string[] command = message.Split(' ');
+
+                    // Обработка команды от клиента
+                    if (command[0] == "SETNAME")
+                    {
+                        // Задание имени пользователя
+                        clientName = command[1];
+                        clients.Add(clientName, clientSocket);
+                        SendMessageToClient(clientSocket, "Ваше имя установлено: " + clientName);
+                    }
+                    else if (command[0] == "GETUSERS")
+                    {
+                        // Получение списка пользователей на сервере
+                        string userList = "Пользователи на сервере: ";
+                        foreach (string userName in clients.Keys)
+                        {
+                            userList += userName + ", ";
+                        }
+                        SendMessageToClient(clientSocket, userList);
+                    }
+                    else if (command[0] == "BROADCAST")
+                    {
+                        // Отправка сообщения всем пользователям
+                        string broadcastMessage = string.Join(" ", command, 1, command.Length - 1);
+                        foreach (Socket socket in clients.Values)
+                        {
+                            SendMessageToClient(socket, "[" + clientName + "]: " + broadcastMessage);
+                        }
+                    }
+                    else if (command[0] == "PRIVATE")
+                    {
+                        // Отправка приватного сообщения определенному пользователю
+                        string targetUser = command[1];
+                        string privateMessage = string.Join(" ", command, 2, command.Length - 2);
+                        if (clients.ContainsKey(targetUser))
+                        {
+                            SendMessageToClient(clients[targetUser], "[Приватно от " + clientName + "]: " + privateMessage);
+                        }
+                        else
+                        {
+                            SendMessageToClient(clientSocket, "Пользователь " + targetUser + " не найден.");
+                        }
+                    }
+                    else if (command[0] == "SETTHEME")
+                    {
+                        // Установка темы чата
+                        chatTheme = string.Join(" ", command, 1, command.Length - 1);
+                        foreach (Socket socket in clients.Values)
+                        {
+                            SendMessageToClient(socket, "Тема чата установлена: " + chatTheme);
+                        }
+                    }
+                    else if (command[0] == "GETTHEME")
+                    {
+                        // Получение темы чата
+                        SendMessageToClient(clientSocket, "Текущая тема чата: " + chatTheme);
+                    }
+                    else
+                    {
+                        SendMessageToClient(clientSocket, "Неизвестная команда.");
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ошибка: " + ex.Message);
+                Console.WriteLine("Ошибка при обработке клиента: " + ex.Message);
             }
             finally
             {
-                listener.Stop();
+                // Удаление клиента из списка при отключении
+                if (clientName != null)
+                {
+                    clients.Remove(clientName);
+                    Console.WriteLine("Клиент отключился: " + clientName + " [" + clientAddress + "]");
+                }
+                clientSocket.Close();
             }
         }
-        class ClientHendler
+
+        static void SendMessageToClient(Socket clientSocket, string message)
         {
-            private Socket clientSocket;
-            private string clientName;
-
-            public ClientHendler(Socket socket)
-            {
-                clientSocket = socket;
-            }
-            public void Start()
-            {
-                byte[] byffer = new byte[1024];
-                int bytesRead = clientSocket.Receive(byffer);
-                clientName = Encoding.UTF8.GetString(byffer, 0, bytesRead);
-
-                connectedClients.Add(clientName, clientSocket);
-                Console.WriteLine("Подключен новый клиент: " + clientName);
-                
-                string welcomeMessage = "Добро пожаловать, " + clientName + "!";
-                SendToClient(clientSocket, welcomeMessage);
-
-                SendToClient(clientSocket, "Текущая тема чата: " + chatTheme);
-
-                SendConnectedUsers();
-
-                while (true)
-                {
-                    bytesRead = clientSocket.Receive(byffer);
-                    string comand = Encoding.UTF8.GetString(byffer, 0, bytesRead);
-
-                    if (comand.StartsWith("/users"))
-                    {
-                        SendConnectedUsers();
-                    }
-                    else if (comand.StartsWith("/theme"))
-                    {
-                        string newTheme = comand.Substring(7);
-                        SetChatTheme(newTheme);
-                    }
-                    else if (comand.StartsWith("/private"))
-                    {
-                        string[] parts = comand.Split(' ');
-                        string recipient = parts[1];
-                        string privateMessage = comand.Substring(9 + recipient.Length);
-                        SendPrivateMessage(recipient, privateMessage);
-                    }
-                    else if (comand.StartsWith("/quit")){
-                        DisconnectClient();
-                        break;
-                    }
-                    else
-                    {
-                        SendToAllClients(clientName + ":" + comand);
-                    }
-                }
-            }
-            private void SendToClient(Socket socket, string message)
-            {
-                byte[] buffer = Encoding.UTF8.GetBytes(message);
-                socket.Send(buffer);
-            }
-            private void SendToAllClients(string message)
-            {
-                foreach (Socket socket in connectedClients.Values) { 
-
-                    SendToClient(socket, message);
-                }
-            }
-            private void SendConnectedUsers()
-            {
-                string userList = "Пользватель на сервере: " + string.Join(", ", connectedClients.Keys);
-                SendToClient(clientSocket, userList);
-            }
-            private void SetChatTheme(string newTheme)
-            {
-                chatTheme = newTheme;
-                Console.WriteLine("Тема чата изменена на: " + newTheme);
-            }
-            private void SendPrivateMessage (string recipient, string message)
-            {
-                if(connectedClients.ContainsKey(recipient))
-                {
-                    Socket recipientSocket = connectedClients[recipient];
-                    SendToClient(recipientSocket, "[Private]" + clientName + ": " + message);
-                }
-                else
-                {
-                    SendToClient(clientSocket, "Пользователь " + recipient + " не найден");
-                }
-            }
-            private void DisconnectClient()
-            {
-                connectedClients.Remove(clientName);
-                SendToAllClients("Пользватель " + clientName + " отключился");
-                clientSocket.Close();
-                Console.WriteLine("Клиент " + clientName + " отключен");
-            }
+            byte[] buffer = Encoding.UTF8.GetBytes(message);
+            clientSocket.Send(buffer);
         }
     }
-
 }
