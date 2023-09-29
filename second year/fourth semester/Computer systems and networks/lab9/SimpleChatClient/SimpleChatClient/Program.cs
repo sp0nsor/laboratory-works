@@ -10,70 +10,32 @@ namespace SimpleChatClient
         {
             Console.WriteLine("Simple Chat Client");
 
-            string serverIP = "127.0.0.1";
-            int serverPort = 8888;
-
             try
             {
-                TcpClient client = new TcpClient(serverIP, serverPort);
-                Console.WriteLine("Подключено к серверу {0}:{1}", serverIP, serverPort);
+                // Создание TCP сокета и подключение к серверу
+                Socket clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                clientSocket.Connect("127.0.0.1", 8888);
 
-                Console.Write("Введите имя: ");
-                string userName = Console.ReadLine();
-
-                byte[] nameBuffer = Encoding.UTF8.GetBytes(userName);
-                client.GetStream().Write(nameBuffer, 0, nameBuffer.Length);
-
-                MessagerReceiver receiver = new MessagerReceiver(client);
-                receiver.Start();
-
+                // Цикл взаимодействия с сервером
                 while (true)
                 {
-                    string command = Console.ReadLine();
+                    Console.Write("> ");
+                    string input = Console.ReadLine();
 
-                    byte[] commandBuffer = Encoding.UTF8.GetBytes(command);
-                    client.GetStream().Write(commandBuffer, 0, commandBuffer.Length);
+                    // Отправка команды серверу
+                    byte[] buffer = Encoding.UTF8.GetBytes(input);
+                    clientSocket.Send(buffer);
 
-                    if (command.StartsWith("/quit"))
-                    {
-                        break;
-                    }
+                    // Получение ответа от сервера
+                    buffer = new byte[1024];
+                    int bytesRead = clientSocket.Receive(buffer);
+                    string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                    Console.WriteLine(message);
                 }
-                client.Close();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ошибка: " + ex.Message);
-            }
-            Console.WriteLine("Нажмите любую кнопку для выхода...");
-            Console.ReadKey();
-        }
-
-        class MessagerReceiver
-        {
-            private TcpClient client;
-
-            public MessagerReceiver(TcpClient client)
-            {
-                this.client = client;
-            }
-
-            public void Start()
-            {
-                try
-                {
-                    while (true)
-                    {
-                        byte[] buffer = new byte[1024];
-                        int bytesRead = client.GetStream().Read(buffer, 0, buffer.Length);
-                        string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                        Console.WriteLine(message);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Ошибка приема сообщения: " + ex.Message);
-                }
+                Console.WriteLine("Error: " + ex.Message);
             }
         }
     }
