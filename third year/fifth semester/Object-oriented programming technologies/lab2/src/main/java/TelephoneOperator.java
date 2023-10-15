@@ -1,4 +1,6 @@
 public class TelephoneOperator {
+
+    private  int ID;
     private int callerNumber;
     private int calledNumber;
     private String date;
@@ -8,7 +10,7 @@ public class TelephoneOperator {
     private int billingUnit;
     private int costCall;
 
-    public TelephoneOperator(int callerNumber, int calledNumber, String date, String time, int duration,int costOneTariffUnit, int billingUnit, int costCall){
+    public TelephoneOperator(int callerNumber, int calledNumber, String date, String time, int duration, int costOneTariffUnit, int billingUnit){
         this.callerNumber = callerNumber;
         this.calledNumber = calledNumber;
         this.date = date;
@@ -16,7 +18,22 @@ public class TelephoneOperator {
         this.duration = duration;
         this.costOneTariffUnit = costOneTariffUnit;
         this.billingUnit = billingUnit;
-        this.costCall = costCall;
+        this.costCall = calculateCost(duration, costOneTariffUnit, billingUnit);
+    }
+
+    private int calculateCost(int duration, int costOneTariffUnit, int billingUnit){
+        int resultDuration = billingUnit;
+        if (duration % billingUnit != 0){
+            while (resultDuration < duration){
+                resultDuration += billingUnit;
+            }
+        }
+
+        return this.costCall = (resultDuration / billingUnit) * costOneTariffUnit;
+    }
+
+    public int getID() {
+        return ID;
     }
 
     public int getCallerNumber(){
@@ -81,5 +98,9 @@ public class TelephoneOperator {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public void setID(int ID){
+        this.ID = ID;
     }
 }
