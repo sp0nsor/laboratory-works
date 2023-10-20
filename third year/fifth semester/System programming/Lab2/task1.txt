@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/statfs.h>
+#include <string.h>
+
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <file_path>\n", argv[0]);
+        exit(1);
+    }
+
+    const char *file_path = argv[1];
+
+    // Информация о файле с использованием stat
+    struct stat file_stat;
+    if (stat(file_path, &file_stat) == -1) {
+        perror("stat");
+        exit(1);
+    }
+
+    // Информация о файловой системе с использованием statfs
+    struct statfs fs_stat;
+    if (statfs(file_path, &fs_stat) == -1) {
+        perror("statfs");
+        exit(1);
+    }
+
+    // Вывод информации о файле
+    printf("File Information:\n");
+    printf("File Path: %s\n", file_path);
+    printf("File Size: %lld bytes\n", (long long)file_stat.st_size);
+    printf("Inode Number: %ld\n", (long)file_stat.st_ino);
+    printf("File Permissions: %o\n", file_stat.st_mode & 07777);
+    printf("Number of Hard Links: %ld\n", (long)file_stat.st_nlink);
+    printf("User ID of Owner: %d\n", file_stat.st_uid);
+    printf("Group ID of Owner: %d\n", file_stat.st_gid);
+    printf("Block Size: %ld bytes\n", (long)file_stat.st_blksize);
+    printf("Number of Blocks: %lld\n", (long long)file_stat.st_blocks);
+    printf("File Type: ");
+    if (S_ISREG(file_stat.st_mode)) {
+        printf("Regular File\n");
+    } else if (S_ISDIR(file_stat.st_mode)) {
+        printf("Directory\n");
+    } else if (S_ISLNK(file_stat.st_mode)) {
+        printf("Symbolic Link\n");
+    } else {
+        printf("Other\n");
+    }
+
+    // Вывод информации о файловой системе
+    printf("\nFilesystem Information:\n");
+    printf("Filesystem ID: 0x%lx\n", (long)fs_stat.f_fsid.__val[0]);
+    printf("Block Size: %lu bytes\n", fs_stat.f_bsize);
+    printf("Total Blocks: %lu\n", fs_stat.f_blocks);
+    printf("Free Blocks: %lu\n", fs_stat.f_bfree);
+    printf("Available Blocks: %lu\n", fs_stat.f_bavail);
+    printf("Total Inodes: %lu\n", fs_stat.f_files);
+    printf("Free Inodes: %lu\n", fs_stat.f_ffree);
+
+    return 0;
+}
