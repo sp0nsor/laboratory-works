@@ -1,16 +1,20 @@
 public class TelephoneOperator {
 
-    private  int ID;
-    private int callerNumber;
-    private int calledNumber;
+    private  Integer ID;
+    private Integer callerNumber;
+    private Integer calledNumber;
     private String date;
     private String time;
-    private int duration;
-    private int costOneTariffUnit;
-    private int billingUnit;
-    private int costCall;
+    private Integer duration;
+    private Integer costOneTariffUnit;
+    private Integer billingUnit;
+    private Integer costCall;
 
-    public TelephoneOperator(int callerNumber, int calledNumber, String date, String time, int duration, int costOneTariffUnit, int billingUnit){
+    public TelephoneOperator(){
+
+    }
+
+    public TelephoneOperator(Integer callerNumber, Integer calledNumber, String date, String time, Integer duration, Integer costOneTariffUnit, Integer billingUnit){
         this.callerNumber = callerNumber;
         this.calledNumber = calledNumber;
         this.date = date;
@@ -21,8 +25,8 @@ public class TelephoneOperator {
         this.costCall = calculateCost(duration, costOneTariffUnit, billingUnit);
     }
 
-    private int calculateCost(int duration, int costOneTariffUnit, int billingUnit){
-        int resultDuration = billingUnit;
+    public Integer calculateCost(Integer duration, Integer costOneTariffUnit, Integer billingUnit){
+        Integer resultDuration = billingUnit;
         if (duration % billingUnit != 0){
             while (resultDuration < duration){
                 resultDuration += billingUnit;
@@ -32,31 +36,31 @@ public class TelephoneOperator {
         return this.costCall = (resultDuration / billingUnit) * costOneTariffUnit;
     }
 
-    public int getID() {
+    public Integer getID() {
         return ID;
     }
 
-    public int getCallerNumber(){
+    public Integer getCallerNumber(){
         return  callerNumber;
     }
 
-    public int getBillingUnit() {
+    public Integer getBillingUnit() {
         return billingUnit;
     }
 
-    public int getCalledNumber() {
+    public Integer getCalledNumber() {
         return calledNumber;
     }
 
-    public int getCostCall() {
+    public Integer getCostCall() {
         return costCall;
     }
 
-    public int getCostOneTariffUnit() {
+    public Integer getCostOneTariffUnit() {
         return costOneTariffUnit;
     }
 
-    public int getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
@@ -68,23 +72,23 @@ public class TelephoneOperator {
         return time;
     }
 
-    public void setBillingUnit(int billingUnit) {
+    public void setBillingUnit(Integer billingUnit) {
         this.billingUnit = billingUnit;
     }
 
-    public void setCalledNumber(int calledNumber) {
+    public void setCalledNumber(Integer calledNumber) {
         this.calledNumber = calledNumber;
     }
 
-    public void setCallerNumber(int callerNumber) {
+    public void setCallerNumber(Integer callerNumber) {
         this.callerNumber = callerNumber;
     }
 
-    public void setCostCall(int costCall) {
+    public void setCostCall(Integer costCall) {
         this.costCall = costCall;
     }
 
-    public void setCostOneTariffUnit(int costOneTariffUnit) {
+    public void setCostOneTariffUnit(Integer costOneTariffUnit) {
         this.costOneTariffUnit = costOneTariffUnit;
     }
 
@@ -92,7 +96,7 @@ public class TelephoneOperator {
         this.date = date;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 
@@ -100,7 +104,7 @@ public class TelephoneOperator {
         this.time = time;
     }
 
-    public void setID(int ID){
+    public void setID(Integer ID){
         this.ID = ID;
     }
 }
