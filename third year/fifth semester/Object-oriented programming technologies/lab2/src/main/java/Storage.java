@@ -1,3 +1,5 @@
+import pckg.TelephoneOperator;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,14 +13,14 @@ public class Storage {
         call = new TelephoneOperator(12345, 54321, "16.10.2023", "00:55", 90, 2, 15);
         create(call);
 
-        call = new TelephoneOperator(5678, 8765, "16.10.2023", "1:23", 30, 2, 15);
+        call = new TelephoneOperator(8901, 1098, "16.10.2023", "1.:30", 60, 2, 15);
         create(call);
 
-        call = new TelephoneOperator(8901, 1098, "16.10.2023", "1.:30", 60, 2, 15);
+        call = new TelephoneOperator(5678, 8765, "16.10.2023", "1:23", 30, 2, 15);
         create(call);
     }
 
-    public static  Collection <TelephoneOperator> readAll(){
+    public static Collection<TelephoneOperator> readAll(){
         return calls.values();
     }
 
