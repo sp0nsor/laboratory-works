@@ -1,5 +1,5 @@
 import java.io.IOException;
-
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -7,32 +7,35 @@ import javax.servlet.http.HttpServletResponse;
 
 import pckg.TelephoneOperator;
 
-public class SaveServlet extends HttpServlet{
+public class SaveServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException{
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        TelephoneOperator call = new TelephoneOperator();
-        call.setID((Integer.parseInt(req.getParameter("ID"))));
-        call.setCallerNumber(Integer.parseInt(req.getParameter("calledNumber")));
-        call.setCalledNumber(Integer.parseInt(req.getParameter("callerNumber")));
-        call.setDate(req.getParameter("date"));
-        call.setTime(req.getParameter("time"));
-        call.setDuration(Integer.parseInt(req.getParameter("duration")));
-        call.setCostOneTariffUnit(Integer.parseInt(req.getParameter("costOneTariffUnit")));
-        call.setBillingUnit(Integer.parseInt(req.getParameter("billingUnit")));
-        call.setCostCall(call.calculateCost(call.getDuration(), call.getCostOneTariffUnit(), call.getBillingUnit()));
+        TelephoneOperator operator = new TelephoneOperator();
+        operator.setCallerNumber(Integer.parseInt(req.getParameter("callerNumber")));
+        operator.setCalledNumber(Integer.parseInt(req.getParameter("calledNumber")));
+        operator.setDate(req.getParameter("date"));
+        operator.setTime(req.getParameter("time"));
+        operator.setDuration(Integer.parseInt(req.getParameter("duration")));
+        operator.setCostOneTariffUnit(Integer.parseInt(req.getParameter("costOneTariffUnit")));
+        operator.setBillingUnit(Integer.parseInt(req.getParameter("billingUnit")));
 
-        try{
-            call.setID(Integer.parseInt(req.getParameter("id")));
-        }catch (NumberFormatException ex) {}
-        if(call.getID() == null){
-            Storage.create(call);
+        try {
+            operator.setID(Integer.parseInt(req.getParameter("ID")));
+        } catch (NumberFormatException e) {}
+
+        try {
+            if (operator.getID() == null) {
+                operator.calculateCost(operator.getDuration(), operator.getCostOneTariffUnit(), operator.getBillingUnit());
+                Storage.create(operator);
+            } else {
+                operator.calculateCost(operator.getDuration(), operator.getCostOneTariffUnit(), operator.getBillingUnit());
+                Storage.update(operator);
+            }
+        } catch (SQLException e) {
+            throw new ServletException(e);
         }
-        else{
-            Storage.update(call);
-        }
+
         resp.sendRedirect(req.getContextPath() + "/index.html");
     }
-
 }

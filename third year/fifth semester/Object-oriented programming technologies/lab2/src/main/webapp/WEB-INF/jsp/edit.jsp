@@ -61,11 +61,7 @@
                                value="<%= call != null
                                           ? call.getBillingUnit()
                                           : new String() %>">
-            <P>costCall:</P>
-                                    <INPUT type="text" name="costCall"
-                                           value="<%= call != null
-                                                      ? call.getCostCall()
-                                                      : new String() %>">
+
             <BUTTON type="submit">Сохранить</BUTTON>
             <A href="index.html">Назад</A>
         </FORM>
