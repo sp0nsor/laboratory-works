@@ -13,7 +13,7 @@ namespace SimpleChatServer
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Простой чат-сервер");
+            Console.WriteLine("Simple Chat Server");
             Console.WriteLine("Ожидание подключений...");
 
             // Создание TCP сокета и привязка его к указанному порту
