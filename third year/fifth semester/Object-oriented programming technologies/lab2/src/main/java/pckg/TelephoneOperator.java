@@ -1,3 +1,5 @@
+package pckg;
+
 public class TelephoneOperator {
 
     private  Integer ID;
@@ -28,12 +30,16 @@ public class TelephoneOperator {
     public Integer calculateCost(Integer duration, Integer costOneTariffUnit, Integer billingUnit){
         Integer resultDuration = billingUnit;
         if (duration % billingUnit != 0){
-            while (resultDuration < duration){
+            return this.costCall = (duration / billingUnit) * costOneTariffUnit;
+        }
+        else if (duration < billingUnit)
+            return costOneTariffUnit;
+        else {
+            while (resultDuration < duration) {
                 resultDuration += billingUnit;
             }
+            return this.costCall = ((resultDuration)/ billingUnit) * costOneTariffUnit;
         }
-
-        return this.costCall = (resultDuration / billingUnit) * costOneTariffUnit;
     }
 
     public Integer getID() {

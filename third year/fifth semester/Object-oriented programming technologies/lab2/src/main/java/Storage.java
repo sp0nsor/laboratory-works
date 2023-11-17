@@ -1,46 +1,185 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+
+import pckg.TelephoneOperator;
 
 public class Storage {
-    private static Map<Integer, TelephoneOperator> calls = new HashMap<Integer, TelephoneOperator>();
-    static {
-        TelephoneOperator call;
-        call = new TelephoneOperator(12345, 54321, "16.10.2023", "00:55", 90, 2, 15);
-        create(call);
+    private static String jdbcUrl = null;
+    private static String jdbcUser = null;
+    private static String jdbcPassword = null;
 
-        call = new TelephoneOperator(5678, 8765, "16.10.2023", "1:23", 30, 2, 15);
-        create(call);
-
-        call = new TelephoneOperator(8901, 1098, "16.10.2023", "1.:30", 60, 2, 15);
-        create(call);
+    public static void init(String jdbcDriver, String jdbcUrl, String jdbcUser, String jdbcPassword) throws ClassNotFoundException {
+        Class.forName(jdbcDriver);
+        Storage.jdbcUrl = jdbcUrl;
+        Storage.jdbcUser = jdbcUser;
+        Storage.jdbcPassword = jdbcPassword;
     }
 
-    public static  Collection <TelephoneOperator> readAll(){
-        return calls.values();
-    }
-
-    public  static  TelephoneOperator readById (Integer id){
-        return calls.get(id);
-    }
-
-    public static void update (TelephoneOperator call){
-        calls.put(call.getID(), call);
-    }
-
-    public static void delete (Integer id){
-        calls.remove(id);
-    }
-    public static void create (TelephoneOperator call){
-        Integer id = 1;
-        Set<Integer> ids = calls.keySet();
-        if (!ids.isEmpty()){
-            id += Collections.max(ids);
+    public static Collection<TelephoneOperator> readAll() throws SQLException {
+        String sql = "SELECT `ID`, `callerNumber`, `calledNumber`, `date`, `time`, `duration`, `costOneTariffUnit`, `billingUnit`, `costCall` FROM `TelephoneOperator`";
+        Connection c = null;
+        PreparedStatement s = null;
+        ResultSet r = null;
+        try {
+            c = getConnection();
+            s = c.prepareStatement(sql);
+            r = s.executeQuery();
+            Collection<TelephoneOperator> operators = new ArrayList<>();
+            while (r.next()) {
+                TelephoneOperator operator = new TelephoneOperator();
+                operator.setID(r.getInt("ID"));
+                operator.setCallerNumber(r.getInt("callerNumber"));
+                operator.setCalledNumber(r.getInt("calledNumber"));
+                operator.setDate(r.getString("date"));
+                operator.setTime(r.getString("time"));
+                operator.setDuration(r.getInt("duration"));
+                operator.setCostOneTariffUnit(r.getInt("costOneTariffUnit"));
+                operator.setBillingUnit(r.getInt("billingUnit"));
+                operator.setCostCall(r.getInt("costCall"));
+                operators.add(operator);
+            }
+            return operators;
+        } finally {
+            try {
+                r.close();
+            } catch (NullPointerException | SQLException e) {
+            }
+            try {
+                s.close();
+            } catch (NullPointerException | SQLException e) {
+            }
+            try {
+                c.close();
+            } catch (NullPointerException | SQLException e) {
+            }
         }
+    }
 
-        call.setID(id);
-        calls.put(id, call);
+    public static TelephoneOperator readById(Integer id) throws SQLException {
+        String sql = "SELECT `callerNumber`, `calledNumber`, `date`, `time`, `duration`, `costOneTariffUnit`, `billingUnit`, `costCall` FROM `TelephoneOperator` WHERE `ID` = ?";
+        Connection c = null;
+        PreparedStatement s = null;
+        ResultSet r = null;
+        try {
+            c = getConnection();
+            s = c.prepareStatement(sql);
+            s.setInt(1, id);
+            r = s.executeQuery();
+            TelephoneOperator operator = null;
+            if (r.next()) {
+                operator = new TelephoneOperator();
+                operator.setID(id);
+                operator.setCallerNumber(r.getInt("callerNumber"));
+                operator.setCalledNumber(r.getInt("calledNumber"));
+                operator.setDate(r.getString("date"));
+                operator.setTime(r.getString("time"));
+                operator.setDuration(r.getInt("duration"));
+                operator.setCostOneTariffUnit(r.getInt("costOneTariffUnit"));
+                operator.setBillingUnit(r.getInt("billingUnit"));
+                operator.setCostCall(r.getInt("costCall"));
+            }
+            return operator;
+        } finally {
+            try {
+                r.close();
+            } catch (NullPointerException | SQLException e) {
+            }
+            try {
+                s.close();
+            } catch (NullPointerException | SQLException e) {
+            }
+            try {
+                c.close();
+            } catch (NullPointerException | SQLException e) {
+            }
+        }
+    }
+
+    public static void create(TelephoneOperator operator) throws SQLException {
+        String sql = "INSERT INTO `TelephoneOperator` (`callerNumber`, `calledNumber`, `date`, `time`, `duration`, `costOneTariffUnit`, `billingUnit`, `costCall`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        Connection c = null;
+        PreparedStatement s = null;
+        try {
+            c = getConnection();
+            s = c.prepareStatement(sql);
+            s.setInt(1, operator.getCallerNumber());
+            s.setInt(2, operator.getCalledNumber());
+            s.setString(3, operator.getDate());
+            s.setString(4, operator.getTime());
+            s.setInt(5, operator.getDuration());
+            s.setInt(6, operator.getCostOneTariffUnit());
+            s.setInt(7, operator.getBillingUnit());
+            s.setInt(8, operator.getCostCall());
+            s.executeUpdate();
+        } finally {
+            try {
+                s.close();
+            } catch (NullPointerException | SQLException e) {
+            }
+            try {
+                c.close();
+            } catch (NullPointerException | SQLException e) {
+            }
+        }
+    }
+
+    public static void update(TelephoneOperator operator) throws SQLException {
+        String sql = "UPDATE `TelephoneOperator` SET `callerNumber` = ?, `calledNumber` = ?, `date` = ?, `time` = ?, `duration` = ?, `costOneTariffUnit` = ?, `billingUnit` = ?, `costCall` = ? WHERE `ID` = ?";
+        Connection c = null;
+        PreparedStatement s = null;
+        try {
+            c = getConnection();
+            s = c.prepareStatement(sql);
+            s.setInt(1, operator.getCallerNumber());
+            s.setInt(2, operator.getCalledNumber());
+            s.setString(3, operator.getDate());
+            s.setString(4, operator.getTime());
+            s.setInt(5, operator.getDuration());
+            s.setInt(6, operator.getCostOneTariffUnit());
+            s.setInt(7, operator.getBillingUnit());
+            s.setInt(8, operator.getCostCall());
+            s.setInt(9, operator.getID());
+            s.executeUpdate();
+        } finally {
+            try {
+                s.close();
+            } catch (NullPointerException | SQLException e) {
+            }
+            try {
+                c.close();
+            } catch (NullPointerException | SQLException e) {
+            }
+        }
+    }
+
+    public static void delete(Integer id) throws SQLException {
+        String sql = "DELETE FROM `TelephoneOperator` WHERE `ID` = ?";
+        Connection c = null;
+        PreparedStatement s = null;
+        try {
+            c = getConnection();
+            s = c.prepareStatement(sql);
+            s.setInt(1, id);
+            s.executeUpdate();
+        } finally {
+            try {
+                s.close();
+            } catch (NullPointerException | SQLException e) {
+            }
+            try {
+                c.close();
+            } catch (NullPointerException | SQLException e) {
+            }
+        }
+    }
+
+    private static Connection getConnection() throws SQLException {
+        System.out.println("Tyt pizdec");
+        return DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcPassword);
     }
 }
