@@ -4,6 +4,7 @@ const {
   getEntryById,
   updateEntry,
   deleteEntry,
+  authenticateEntry,
 } = require("./helper");
 
 const readerCreate = (req, res) => createEntry(res, "reader", req.body, "email");
@@ -16,10 +17,13 @@ const readerUpdate = (req, res) => updateEntry(res, "reader", req.params.id, req
 
 const readerDelete = (req, res) => deleteEntry(res, "reader", req.params.id);
 
+const readerLogin = (req, res) => authenticateEntry(res, "reader", "email");
+
 module.exports = {
   readerCreate,
   readerGetAll,
   readerGetById,
   readerUpdate,
   readerDelete,
+  readerLogin,
 };

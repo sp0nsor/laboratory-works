@@ -1,7 +1,5 @@
 const express = require("express");
-
 const router = express.Router();
-
 const bookController = require("../controllers/book");
 
 router
@@ -15,7 +13,7 @@ router
   .patch(bookController.bookUpdate)
   .delete(bookController.bookDelete);
 
-  router
+router
   .route("/book/:title")
   .get(bookController.bookSearch);
 

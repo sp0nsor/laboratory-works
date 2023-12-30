@@ -1,5 +1,7 @@
 const { Book, Reader, Author, Genre } = require("../models");
 const { Op } = require("sequelize");
+const jwt = require("jsonwebtoken");
+
 
 const get404Error = (model) => ({ error: `The ${model} could not be found.` });
 
@@ -31,6 +33,14 @@ const getModel = (model) => {
   return models[model];
 };
 
+const generateAccessToken = (id) => {
+  const payload = {
+    id,
+  }
+
+  return jwt.sign(payload, "MY_SECRET_KEY", {expiresIn: "1h"});
+}
+
 const createEntry = async (res, modelName, data, uniqueField) => {
   const Model = getModel(modelName);
 
@@ -53,6 +63,25 @@ const createEntry = async (res, modelName, data, uniqueField) => {
     }
   }
 };
+
+const authenticateEntry = async (res, modelName, reqEmail) => {
+  const UserModel = getModel(modelName);
+
+  try {
+    const user = await UserModel.findAll({
+      where: { email: reqEmail },
+    });
+    
+    if (user != null) {
+      const token = generateAccessToken(user.id);
+      res.status(200).json({ message: 'Login successful', token });
+    } else {
+      res.status(401).json({ message: 'Invalid email' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Error authenticating user', error });
+  }
+}; 
 
 const getAllEntries = async (res, model) => {
   const Model = getModel(model);
@@ -141,5 +170,6 @@ module.exports = {
   updateEntry,
   deleteEntry,
   getEntryBySearch,
+  authenticateEntry,
 };
 
