@@ -5,7 +5,7 @@ const BookModel = require("./book");
 const AuthorModel = require("./author");
 const GenreModel = require("./genre");
 
-const { DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT } = process.env;
+const { DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT} = process.env;
 
 const setUpDatabase = () => {
   const connection = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {

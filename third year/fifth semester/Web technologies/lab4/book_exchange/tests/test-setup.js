@@ -1,3 +1,4 @@
 const dotenv = require("dotenv");
 
-dotenv.config({ path: "./.env.test" });
+console.log("sosati pisky");
+dotenv.config({ path: "./.env" });
