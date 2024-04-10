@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _currentNumber = Random.Range(0, 100);
+        Debug.Log(_currentNumber);
     }
 
     public void OnSendButton()
